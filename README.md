@@ -22,12 +22,12 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead |Deeksha Sharma |2501010132 |Deeksha-2007 |
+| Member 2 | |Bhumika| 2501010117 |Bhumiikaa21 |
+| Member 3 | |Himanshi| 2501010556|Himanshiyadav17 |
+| Member 4 | Janvi Saraf| 2501010587| Janvisaraf07|
 
-**Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
+**Team No.:** _T0100_ · **Section:** _A___ · **Repository URL:** https://github.com/Deeksha-2007/DE_Project_2026
 
 ---
 
