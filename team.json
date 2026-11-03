@@ -1,0 +1,27 @@
+{
+  "team_number": "T0100",
+  "group_lead": {
+    "name": "Deeksha Sharma",
+    "enrollment_no": "2501010132",
+    "github": "https://github.com/Deeksha-2007"
+  },
+  "members": [
+    {
+      "name": "Bhumika",
+      "enrollment_no": "2501010117",
+      "github": "https://github.com/Bhumiikaa21"
+    },
+    {
+      "name": "Himanshi",
+      "enrollment_no": "2501010556",
+      "github": "https://github.com/Himanshiyadav17"
+    },
+    {
+      "name": "Janvi Saraf",
+      "enrollment_no": "2501010587",
+      "github": "https://github.com/Janvisaraf07"
+    }
+  ],
+  "postgres_version": "PostgreSQL 15",
+  "laptop_used_for_benchmarks": "MacBook Pro M4 Pro"
+}
