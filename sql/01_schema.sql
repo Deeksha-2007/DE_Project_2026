@@ -120,3 +120,41 @@ CREATE TABLE users (
     CONSTRAINT chk_user_kyc_status
         CHECK (kyc_status IN ('PENDING', 'REJECTED', 'VERIFIED'))
 );
+
+-- 6. User teams table
+CREATE TABLE user_teams (
+    user_team_id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    match_id INTEGER NOT NULL,
+    team_label VARCHAR(100) NOT NULL,
+    captain_id INTEGER NOT NULL,
+    vice_captain_id INTEGER NOT NULL,
+    total_points NUMERIC(7,1),
+    created_at TIMESTAMPTZ NOT NULL,
+
+    CONSTRAINT fk_user_teams_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_user_teams_match
+        FOREIGN KEY (match_id)
+        REFERENCES matches(match_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_user_teams_captain
+        FOREIGN KEY (captain_id)
+        REFERENCES players(player_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_user_teams_vice_captain
+        FOREIGN KEY (vice_captain_id)
+        REFERENCES players(player_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT chk_different_captains
+        CHECK (captain_id <> vice_captain_id),
+
+    CONSTRAINT chk_user_team_points
+        CHECK (total_points IS NULL OR total_points >= 0)
+);
