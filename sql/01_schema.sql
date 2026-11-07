@@ -63,3 +63,39 @@ CREATE TABLE matches (
     CONSTRAINT chk_match_status
         CHECK (status IN ('UPCOMING', 'LIVE', 'COMPLETED', 'ABANDONED'))
 );
+
+-- 4. Player match statistics table
+CREATE TABLE player_match_stats (
+    match_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
+    runs INTEGER NOT NULL,
+    balls_faced INTEGER NOT NULL,
+    fours INTEGER NOT NULL,
+    sixes INTEGER NOT NULL,
+    wickets INTEGER NOT NULL,
+    catches INTEGER NOT NULL,
+    fantasy_points NUMERIC(7,1) NOT NULL,
+
+    CONSTRAINT pk_player_match_stats
+        PRIMARY KEY (match_id, player_id),
+
+    CONSTRAINT fk_stats_match
+        FOREIGN KEY (match_id)
+        REFERENCES matches(match_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_stats_player
+        FOREIGN KEY (player_id)
+        REFERENCES players(player_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT chk_stats_nonnegative
+        CHECK (
+            runs >= 0 AND
+            balls_faced >= 0 AND
+            fours >= 0 AND
+            sixes >= 0 AND
+            wickets >= 0 AND
+            catches >= 0
+        )
+);
