@@ -36,3 +36,30 @@ CREATE TABLE players (
     CONSTRAINT chk_player_credits
         CHECK (credits > 0)
 );
+
+-- 3. Matches table
+CREATE TABLE matches (
+    match_id INTEGER PRIMARY KEY,
+    tournament VARCHAR(100) NOT NULL,
+    home_team_id INTEGER NOT NULL,
+    away_team_id INTEGER NOT NULL,
+    venue VARCHAR(150) NOT NULL,
+    starts_at TIMESTAMPTZ NOT NULL,
+    status VARCHAR(20) NOT NULL,
+
+    CONSTRAINT fk_matches_home_team
+        FOREIGN KEY (home_team_id)
+        REFERENCES teams(team_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_matches_away_team
+        FOREIGN KEY (away_team_id)
+        REFERENCES teams(team_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT chk_match_teams
+        CHECK (home_team_id <> away_team_id),
+
+    CONSTRAINT chk_match_status
+        CHECK (status IN ('UPCOMING', 'LIVE', 'COMPLETED', 'ABANDONED'))
+);
