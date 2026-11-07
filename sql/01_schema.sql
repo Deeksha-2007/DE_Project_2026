@@ -239,3 +239,36 @@ CREATE TABLE contest_entries (
     CONSTRAINT chk_entry_winnings
         CHECK (winnings >= 0)
 );
+
+-- 10. Wallet transactions table
+CREATE TABLE wallet_transactions (
+    txn_id INTEGER PRIMARY KEY,
+    user_id INTEGER NOT NULL,
+    txn_type VARCHAR(20) NOT NULL,
+    amount NUMERIC(12,2) NOT NULL,
+    reference_entry_id INTEGER,
+    status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
+
+    CONSTRAINT fk_wallet_user
+        FOREIGN KEY (user_id)
+        REFERENCES users(user_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_wallet_entry
+        FOREIGN KEY (reference_entry_id)
+        REFERENCES contest_entries(entry_id)
+        ON DELETE SET NULL,
+
+    CONSTRAINT chk_wallet_txn_type
+        CHECK (txn_type IN (
+            'BONUS', 'DEPOSIT', 'ENTRY_FEE',
+            'REFUND', 'WINNINGS', 'WITHDRAWAL'
+        )),
+
+    CONSTRAINT chk_wallet_status
+        CHECK (status IN ('FAILED', 'PENDING', 'SUCCESS')),
+
+    CONSTRAINT chk_wallet_amount
+        CHECK (amount > 0)
+);
