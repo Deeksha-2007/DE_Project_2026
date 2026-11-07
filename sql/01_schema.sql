@@ -99,3 +99,24 @@ CREATE TABLE player_match_stats (
             catches >= 0
         )
 );
+
+-- 5. Users table
+CREATE TABLE users (
+    user_id INTEGER PRIMARY KEY,
+    username VARCHAR(100) NOT NULL UNIQUE,
+    phone VARCHAR(20) NOT NULL UNIQUE,
+    email VARCHAR(255) UNIQUE,
+    state_code CHAR(2) NOT NULL,
+    kyc_status VARCHAR(20) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
+
+    CONSTRAINT chk_user_state_code
+        CHECK (state_code IN (
+            'AP', 'AS', 'BR', 'DL', 'GJ', 'HR',
+            'KA', 'KL', 'MH', 'MP', 'OD', 'PB',
+            'RJ', 'TG', 'TN', 'UP', 'WB'
+        )),
+
+    CONSTRAINT chk_user_kyc_status
+        CHECK (kyc_status IN ('PENDING', 'REJECTED', 'VERIFIED'))
+);
