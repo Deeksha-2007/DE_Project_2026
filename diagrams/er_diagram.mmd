@@ -1,0 +1,118 @@
+
+erDiagram
+    TEAMS {
+        int team_id PK
+        varchar team_name
+        varchar short_name
+        varchar team_type
+    }
+
+    PLAYERS {
+        int player_id PK
+        varchar full_name
+        int team_id FK
+        varchar role
+        numeric credits
+        boolean is_active
+    }
+
+    MATCHES {
+        int match_id PK
+        varchar tournament
+        int home_team_id FK
+        int away_team_id FK
+        varchar venue
+        timestamptz starts_at
+        varchar status
+    }
+
+    PLAYER_MATCH_STATS {
+        int match_id PK, FK
+        int player_id PK, FK
+        int runs
+        int balls_faced
+        int fours
+        int sixes
+        int wickets
+        int catches
+        numeric fantasy_points
+    }
+
+    USERS {
+        int user_id PK
+        varchar username UK
+        varchar phone UK
+        varchar email UK
+        char state_code
+        varchar kyc_status
+        timestamptz created_at
+    }
+
+    USER_TEAMS {
+        int user_team_id PK
+        int user_id FK
+        int match_id FK
+        varchar team_label
+        int captain_id FK
+        int vice_captain_id FK
+        numeric total_points
+        timestamptz created_at
+    }
+
+    USER_TEAM_PLAYERS {
+        int user_team_id PK, FK
+        int player_id PK, FK
+    }
+
+    CONTESTS {
+        int contest_id PK
+        int match_id FK
+        varchar contest_name
+        varchar contest_type
+        numeric entry_fee
+        int total_spots
+        numeric prize_pool
+        boolean is_guaranteed
+        varchar invite_code UK
+    }
+
+    CONTEST_ENTRIES {
+        int entry_id PK
+        int contest_id FK
+        int user_team_id FK
+        timestamptz joined_at
+        int final_rank
+        numeric winnings
+    }
+
+    WALLET_TRANSACTIONS {
+        int txn_id PK
+        int user_id FK
+        varchar txn_type
+        numeric amount
+        int reference_entry_id FK
+        varchar status
+        timestamptz created_at
+    }
+
+    TEAMS ||--o{ PLAYERS : has
+    TEAMS ||--o{ MATCHES : home_team
+    TEAMS ||--o{ MATCHES : away_team
+
+    MATCHES ||--o{ PLAYER_MATCH_STATS : has
+    PLAYERS ||--o{ PLAYER_MATCH_STATS : records
+
+    USERS ||--o{ USER_TEAMS : creates
+    MATCHES ||--o{ USER_TEAMS : for
+    PLAYERS ||--o{ USER_TEAMS : captain
+    PLAYERS ||--o{ USER_TEAMS : vice_captain
+
+    USER_TEAMS ||--o{ USER_TEAM_PLAYERS : contains
+    PLAYERS ||--o{ USER_TEAM_PLAYERS : selected_in
+
+    MATCHES ||--o{ CONTESTS : hosts
+    CONTESTS ||--o{ CONTEST_ENTRIES : receives
+    USER_TEAMS ||--o{ CONTEST_ENTRIES : enters
+
+    USERS ||--o{ WALLET_TRANSACTIONS : makes
+    CONTEST_ENTRIES o|--o{ WALLET_TRANSACTIONS : referenced_by
