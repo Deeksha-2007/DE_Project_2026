@@ -158,3 +158,22 @@ CREATE TABLE user_teams (
     CONSTRAINT chk_user_team_points
         CHECK (total_points IS NULL OR total_points >= 0)
 );
+
+-- 7. User team players table
+CREATE TABLE user_team_players (
+    user_team_id INTEGER NOT NULL,
+    player_id INTEGER NOT NULL,
+
+    CONSTRAINT pk_user_team_players
+        PRIMARY KEY (user_team_id, player_id),
+
+    CONSTRAINT fk_team_players_user_team
+        FOREIGN KEY (user_team_id)
+        REFERENCES user_teams(user_team_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_team_players_player
+        FOREIGN KEY (player_id)
+        REFERENCES players(player_id)
+        ON DELETE RESTRICT
+);
