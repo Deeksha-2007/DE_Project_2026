@@ -177,3 +177,35 @@ CREATE TABLE user_team_players (
         REFERENCES players(player_id)
         ON DELETE RESTRICT
 );
+
+-- 8. Contests table
+CREATE TABLE contests (
+    contest_id INTEGER PRIMARY KEY,
+    match_id INTEGER NOT NULL,
+    contest_name VARCHAR(150) NOT NULL,
+    contest_type VARCHAR(30) NOT NULL,
+    entry_fee NUMERIC(10,2) NOT NULL,
+    total_spots INTEGER NOT NULL,
+    prize_pool NUMERIC(12,2) NOT NULL,
+    is_guaranteed BOOLEAN NOT NULL,
+    invite_code VARCHAR(50) UNIQUE,
+
+    CONSTRAINT fk_contests_match
+        FOREIGN KEY (match_id)
+        REFERENCES matches(match_id)
+        ON DELETE RESTRICT,
+
+    CONSTRAINT chk_contest_type
+        CHECK (contest_type IN (
+            'HEAD_TO_HEAD', 'MEGA', 'PRIVATE', 'SMALL'
+        )),
+
+    CONSTRAINT chk_contest_entry_fee
+        CHECK (entry_fee >= 0),
+
+    CONSTRAINT chk_contest_total_spots
+        CHECK (total_spots > 0),
+
+    CONSTRAINT chk_contest_prize_pool
+        CHECK (prize_pool >= 0)
+);
