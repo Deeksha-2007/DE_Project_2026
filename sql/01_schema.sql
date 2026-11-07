@@ -209,3 +209,33 @@ CREATE TABLE contests (
     CONSTRAINT chk_contest_prize_pool
         CHECK (prize_pool >= 0)
 );
+
+
+-- 9. Contest entries table
+CREATE TABLE contest_entries (
+    entry_id INTEGER PRIMARY KEY,
+    contest_id INTEGER NOT NULL,
+    user_team_id INTEGER NOT NULL,
+    joined_at TIMESTAMPTZ NOT NULL,
+    final_rank INTEGER,
+    winnings NUMERIC(12,2) NOT NULL,
+
+    CONSTRAINT fk_entries_contest
+        FOREIGN KEY (contest_id)
+        REFERENCES contests(contest_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_entries_user_team
+        FOREIGN KEY (user_team_id)
+        REFERENCES user_teams(user_team_id)
+        ON DELETE CASCADE,
+
+    CONSTRAINT uq_contest_user_team
+        UNIQUE (contest_id, user_team_id),
+
+    CONSTRAINT chk_entry_final_rank
+        CHECK (final_rank IS NULL OR final_rank > 0),
+
+    CONSTRAINT chk_entry_winnings
+        CHECK (winnings >= 0)
+);
