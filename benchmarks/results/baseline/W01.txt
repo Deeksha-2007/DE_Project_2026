@@ -1,0 +1,45 @@
+=== W01 run 1 ===
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.212..0.212 rows=0.00 loops=1)
+  Buffers: shared hit=30 dirtied=2
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.023..0.024 rows=1.00 loops=1)
+        Filter: (match_id = 207)
+        Rows Removed by Filter: 211
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.528 ms
+Trigger for constraint fk_user_teams_user: time=0.461 calls=1
+Trigger for constraint fk_user_teams_match: time=0.061 calls=1
+Trigger for constraint fk_user_teams_captain: time=0.156 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.028 calls=1
+Execution Time: 0.941 ms
+=== W01 run 2 ===
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.187..0.187 rows=0.00 loops=1)
+  Buffers: shared hit=31
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.023..0.024 rows=1.00 loops=1)
+        Filter: (match_id = 207)
+        Rows Removed by Filter: 211
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.310 ms
+Trigger for constraint fk_user_teams_user: time=0.409 calls=1
+Trigger for constraint fk_user_teams_match: time=0.052 calls=1
+Trigger for constraint fk_user_teams_captain: time=0.142 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.025 calls=1
+Execution Time: 0.838 ms
+=== W01 run 3 ===
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.219..0.220 rows=0.00 loops=1)
+  Buffers: shared hit=31
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.028..0.029 rows=1.00 loops=1)
+        Filter: (match_id = 207)
+        Rows Removed by Filter: 211
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.351 ms
+Trigger for constraint fk_user_teams_user: time=0.431 calls=1
+Trigger for constraint fk_user_teams_match: time=0.049 calls=1
+Trigger for constraint fk_user_teams_captain: time=0.148 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.026 calls=1
+Execution Time: 0.900 ms

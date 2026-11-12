@@ -1,0 +1,39 @@
+=== R10 run 1 ===
+Sort  (cost=3463.00..3463.03 rows=9 width=21) (actual time=8.701..8.705 rows=100.00 loops=1)
+  Sort Key: created_at
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=1099
+  ->  Seq Scan on wallet_transactions  (cost=0.00..3462.86 rows=9 width=21) (actual time=8.431..8.677 rows=100.00 loops=1)
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text) AND (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval)))
+        Rows Removed by Filter: 118243
+        Buffers: shared hit=1096
+Planning:
+  Buffers: shared hit=99
+Planning Time: 0.327 ms
+Execution Time: 8.724 ms
+=== R10 run 2 ===
+Sort  (cost=3463.00..3463.03 rows=9 width=21) (actual time=14.564..14.568 rows=100.00 loops=1)
+  Sort Key: created_at
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=1099
+  ->  Seq Scan on wallet_transactions  (cost=0.00..3462.86 rows=9 width=21) (actual time=14.234..14.538 rows=100.00 loops=1)
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text) AND (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval)))
+        Rows Removed by Filter: 118243
+        Buffers: shared hit=1096
+Planning:
+  Buffers: shared hit=99
+Planning Time: 0.351 ms
+Execution Time: 14.590 ms
+=== R10 run 3 ===
+Sort  (cost=3463.00..3463.03 rows=9 width=21) (actual time=9.368..9.373 rows=100.00 loops=1)
+  Sort Key: created_at
+  Sort Method: quicksort  Memory: 28kB
+  Buffers: shared hit=1099
+  ->  Seq Scan on wallet_transactions  (cost=0.00..3462.86 rows=9 width=21) (actual time=9.060..9.343 rows=100.00 loops=1)
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text) AND (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval)))
+        Rows Removed by Filter: 118243
+        Buffers: shared hit=1096
+Planning:
+  Buffers: shared hit=99
+Planning Time: 0.349 ms
+Execution Time: 9.393 ms

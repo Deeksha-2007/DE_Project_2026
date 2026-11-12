@@ -1,0 +1,105 @@
+=== W03 run 1 ===
+Insert on wallet_transactions  (cost=1.19..25.25 rows=0 width=0) (actual time=0.278..0.279 rows=0.00 loops=1)
+  Buffers: shared hit=46 dirtied=2
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=4) (actual time=0.014..0.014 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.29..0.32 rows=1 width=4) (actual time=0.012..0.013 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan Backward using contest_entries_pkey on contest_entries  (cost=0.29..1122.48 rows=42746 width=4) (actual time=0.012..0.012 rows=1.00 loops=1)
+                        Heap Fetches: 2
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..24.92 rows=1 width=152) (actual time=0.038..0.039 rows=1.00 loops=1)
+        Buffers: shared hit=13
+        ->  Nested Loop  (cost=0.57..16.61 rows=1 width=13) (actual time=0.026..0.027 rows=1.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using contest_entries_pkey on contest_entries ce  (cost=0.29..8.31 rows=1 width=12) (actual time=0.018..0.019 rows=1.00 loops=1)
+                    Index Cond: (entry_id = (InitPlan 2).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Index Scan using contests_pkey on contests c  (cost=0.28..8.30 rows=1 width=9) (actual time=0.006..0.006 rows=1.00 loops=1)
+                    Index Cond: (contest_id = ce.contest_id)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Index Scan using user_teams_pkey on user_teams ut  (cost=0.29..8.31 rows=1 width=8) (actual time=0.008..0.008 rows=1.00 loops=1)
+              Index Cond: (user_team_id = ce.user_team_id)
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=284
+Planning Time: 0.977 ms
+Trigger for constraint fk_wallet_user: time=0.385 calls=1
+Trigger for constraint fk_wallet_entry: time=0.037 calls=1
+Execution Time: 0.747 ms
+=== W03 run 2 ===
+Insert on wallet_transactions  (cost=1.19..25.25 rows=0 width=0) (actual time=0.245..0.247 rows=0.00 loops=1)
+  Buffers: shared hit=46 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=4) (actual time=0.013..0.014 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.29..0.32 rows=1 width=4) (actual time=0.012..0.012 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan Backward using contest_entries_pkey on contest_entries  (cost=0.29..1122.48 rows=42746 width=4) (actual time=0.011..0.011 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..24.92 rows=1 width=152) (actual time=0.041..0.042 rows=1.00 loops=1)
+        Buffers: shared hit=13
+        ->  Nested Loop  (cost=0.57..16.61 rows=1 width=13) (actual time=0.026..0.027 rows=1.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using contest_entries_pkey on contest_entries ce  (cost=0.29..8.31 rows=1 width=12) (actual time=0.017..0.018 rows=1.00 loops=1)
+                    Index Cond: (entry_id = (InitPlan 2).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Index Scan using contests_pkey on contests c  (cost=0.28..8.30 rows=1 width=9) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (contest_id = ce.contest_id)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Index Scan using user_teams_pkey on user_teams ut  (cost=0.29..8.31 rows=1 width=8) (actual time=0.010..0.010 rows=1.00 loops=1)
+              Index Cond: (user_team_id = ce.user_team_id)
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=284
+Planning Time: 1.125 ms
+Trigger for constraint fk_wallet_user: time=0.438 calls=1
+Trigger for constraint fk_wallet_entry: time=0.037 calls=1
+Execution Time: 0.780 ms
+=== W03 run 3 ===
+Insert on wallet_transactions  (cost=1.19..25.25 rows=0 width=0) (actual time=0.255..0.256 rows=0.00 loops=1)
+  Buffers: shared hit=46 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=0.32..0.33 rows=1 width=4) (actual time=0.015..0.015 rows=1.00 loops=1)
+          Buffers: shared hit=4
+          InitPlan 1
+            ->  Limit  (cost=0.29..0.32 rows=1 width=4) (actual time=0.013..0.013 rows=1.00 loops=1)
+                  Buffers: shared hit=4
+                  ->  Index Only Scan Backward using contest_entries_pkey on contest_entries  (cost=0.29..1122.48 rows=42746 width=4) (actual time=0.012..0.012 rows=1.00 loops=1)
+                        Heap Fetches: 1
+                        Index Searches: 1
+                        Buffers: shared hit=4
+  ->  Nested Loop  (cost=0.86..24.92 rows=1 width=152) (actual time=0.045..0.046 rows=1.00 loops=1)
+        Buffers: shared hit=13
+        ->  Nested Loop  (cost=0.57..16.61 rows=1 width=13) (actual time=0.027..0.028 rows=1.00 loops=1)
+              Buffers: shared hit=10
+              ->  Index Scan using contest_entries_pkey on contest_entries ce  (cost=0.29..8.31 rows=1 width=12) (actual time=0.018..0.019 rows=1.00 loops=1)
+                    Index Cond: (entry_id = (InitPlan 2).col1)
+                    Index Searches: 1
+                    Buffers: shared hit=7
+              ->  Index Scan using contests_pkey on contests c  (cost=0.28..8.30 rows=1 width=9) (actual time=0.007..0.007 rows=1.00 loops=1)
+                    Index Cond: (contest_id = ce.contest_id)
+                    Index Searches: 1
+                    Buffers: shared hit=3
+        ->  Index Scan using user_teams_pkey on user_teams ut  (cost=0.29..8.31 rows=1 width=8) (actual time=0.012..0.012 rows=1.00 loops=1)
+              Index Cond: (user_team_id = ce.user_team_id)
+              Index Searches: 1
+              Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=284
+Planning Time: 1.163 ms
+Trigger for constraint fk_wallet_user: time=0.436 calls=1
+Trigger for constraint fk_wallet_entry: time=0.042 calls=1
+Execution Time: 0.791 ms

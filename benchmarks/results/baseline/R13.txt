@@ -1,0 +1,63 @@
+=== R13 run 1 ===
+Hash Join  (cost=2667.89..3586.41 rows=21373 width=16) (actual time=29.734..29.735 rows=0.00 loops=1)
+  Hash Cond: (ce.contest_id = c.contest_id)
+  Buffers: shared hit=1453
+  ->  Seq Scan on contest_entries ce  (cost=2575.29..3437.61 rows=21373 width=16) (actual time=29.226..29.226 rows=0.00 loops=1)
+        Filter: (NOT (ANY (entry_id = (hashed SubPlan 1).col1)))
+        Rows Removed by Filter: 42746
+        Buffers: shared hit=1424
+        SubPlan 1
+          ->  Seq Scan on wallet_transactions w  (cost=0.00..2279.43 rows=118343 width=4) (actual time=0.008..8.729 rows=118343.00 loops=1)
+                Buffers: shared hit=1096
+  ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.498..0.498 rows=2544.00 loops=1)
+        Buckets: 4096  Batches: 1  Memory Usage: 122kB
+        Buffers: shared hit=29
+        ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.010..0.329 rows=2544.00 loops=1)
+              Filter: (entry_fee > '0'::numeric)
+              Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=259
+Planning Time: 0.954 ms
+Execution Time: 29.791 ms
+=== R13 run 2 ===
+Hash Join  (cost=2667.89..3586.41 rows=21373 width=16) (actual time=29.159..29.163 rows=0.00 loops=1)
+  Hash Cond: (ce.contest_id = c.contest_id)
+  Buffers: shared hit=1453
+  ->  Seq Scan on contest_entries ce  (cost=2575.29..3437.61 rows=21373 width=16) (actual time=28.671..28.673 rows=0.00 loops=1)
+        Filter: (NOT (ANY (entry_id = (hashed SubPlan 1).col1)))
+        Rows Removed by Filter: 42746
+        Buffers: shared hit=1424
+        SubPlan 1
+          ->  Seq Scan on wallet_transactions w  (cost=0.00..2279.43 rows=118343 width=4) (actual time=0.009..8.754 rows=118343.00 loops=1)
+                Buffers: shared hit=1096
+  ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.480..0.480 rows=2544.00 loops=1)
+        Buckets: 4096  Batches: 1  Memory Usage: 122kB
+        Buffers: shared hit=29
+        ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.009..0.306 rows=2544.00 loops=1)
+              Filter: (entry_fee > '0'::numeric)
+              Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=259
+Planning Time: 0.880 ms
+Execution Time: 29.239 ms
+=== R13 run 3 ===
+Hash Join  (cost=2667.89..3586.41 rows=21373 width=16) (actual time=30.053..30.055 rows=0.00 loops=1)
+  Hash Cond: (ce.contest_id = c.contest_id)
+  Buffers: shared hit=1453
+  ->  Seq Scan on contest_entries ce  (cost=2575.29..3437.61 rows=21373 width=16) (actual time=29.491..29.491 rows=0.00 loops=1)
+        Filter: (NOT (ANY (entry_id = (hashed SubPlan 1).col1)))
+        Rows Removed by Filter: 42746
+        Buffers: shared hit=1424
+        SubPlan 1
+          ->  Seq Scan on wallet_transactions w  (cost=0.00..2279.43 rows=118343 width=4) (actual time=0.008..8.561 rows=118343.00 loops=1)
+                Buffers: shared hit=1096
+  ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.554..0.555 rows=2544.00 loops=1)
+        Buckets: 4096  Batches: 1  Memory Usage: 122kB
+        Buffers: shared hit=29
+        ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.010..0.311 rows=2544.00 loops=1)
+              Filter: (entry_fee > '0'::numeric)
+              Buffers: shared hit=29
+Planning:
+  Buffers: shared hit=259
+Planning Time: 0.866 ms
+Execution Time: 30.104 ms

@@ -1,0 +1,75 @@
+=== R03 run 1 ===
+Sort  (cost=967.88..967.89 rows=1 width=32) (actual time=2.654..2.655 rows=2.00 loops=1)
+  Sort Key: ut.team_label
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=355
+  ->  Nested Loop  (cost=0.00..967.88 rows=1 width=32) (actual time=0.523..2.629 rows=2.00 loops=1)
+        Join Filter: (v.player_id = ut.vice_captain_id)
+        Rows Removed by Join Filter: 422
+        Buffers: shared hit=352
+        ->  Nested Loop  (cost=0.00..953.75 rows=1 width=24) (actual time=0.499..2.586 rows=2.00 loops=1)
+              Join Filter: (c.player_id = ut.captain_id)
+              Rows Removed by Join Filter: 370
+              Buffers: shared hit=346
+              ->  Seq Scan on user_teams ut  (cost=0.00..939.62 rows=1 width=16) (actual time=0.473..2.539 rows=2.00 loops=1)
+                    Filter: ((user_id = 1006) AND (match_id = 130))
+                    Rows Removed by Filter: 39973
+                    Buffers: shared hit=340
+              ->  Seq Scan on players c  (cost=0.00..8.50 rows=450 width=16) (actual time=0.003..0.013 rows=186.00 loops=2)
+                    Buffers: shared hit=6
+        ->  Seq Scan on players v  (cost=0.00..8.50 rows=450 width=16) (actual time=0.003..0.011 rows=212.00 loops=2)
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=219
+Planning Time: 0.720 ms
+Execution Time: 2.702 ms
+=== R03 run 2 ===
+Sort  (cost=967.88..967.89 rows=1 width=32) (actual time=2.363..2.364 rows=2.00 loops=1)
+  Sort Key: ut.team_label
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=355
+  ->  Nested Loop  (cost=0.00..967.88 rows=1 width=32) (actual time=0.462..2.343 rows=2.00 loops=1)
+        Join Filter: (v.player_id = ut.vice_captain_id)
+        Rows Removed by Join Filter: 422
+        Buffers: shared hit=352
+        ->  Nested Loop  (cost=0.00..953.75 rows=1 width=24) (actual time=0.439..2.300 rows=2.00 loops=1)
+              Join Filter: (c.player_id = ut.captain_id)
+              Rows Removed by Join Filter: 370
+              Buffers: shared hit=346
+              ->  Seq Scan on user_teams ut  (cost=0.00..939.62 rows=1 width=16) (actual time=0.417..2.259 rows=2.00 loops=1)
+                    Filter: ((user_id = 1006) AND (match_id = 130))
+                    Rows Removed by Filter: 39973
+                    Buffers: shared hit=340
+              ->  Seq Scan on players c  (cost=0.00..8.50 rows=450 width=16) (actual time=0.002..0.011 rows=186.00 loops=2)
+                    Buffers: shared hit=6
+        ->  Seq Scan on players v  (cost=0.00..8.50 rows=450 width=16) (actual time=0.002..0.011 rows=212.00 loops=2)
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=219
+Planning Time: 0.562 ms
+Execution Time: 2.408 ms
+=== R03 run 3 ===
+Sort  (cost=967.88..967.89 rows=1 width=32) (actual time=2.611..2.612 rows=2.00 loops=1)
+  Sort Key: ut.team_label
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=355
+  ->  Nested Loop  (cost=0.00..967.88 rows=1 width=32) (actual time=0.469..2.588 rows=2.00 loops=1)
+        Join Filter: (v.player_id = ut.vice_captain_id)
+        Rows Removed by Join Filter: 422
+        Buffers: shared hit=352
+        ->  Nested Loop  (cost=0.00..953.75 rows=1 width=24) (actual time=0.445..2.544 rows=2.00 loops=1)
+              Join Filter: (c.player_id = ut.captain_id)
+              Rows Removed by Join Filter: 370
+              Buffers: shared hit=346
+              ->  Seq Scan on user_teams ut  (cost=0.00..939.62 rows=1 width=16) (actual time=0.422..2.503 rows=2.00 loops=1)
+                    Filter: ((user_id = 1006) AND (match_id = 130))
+                    Rows Removed by Filter: 39973
+                    Buffers: shared hit=340
+              ->  Seq Scan on players c  (cost=0.00..8.50 rows=450 width=16) (actual time=0.002..0.011 rows=186.00 loops=2)
+                    Buffers: shared hit=6
+        ->  Seq Scan on players v  (cost=0.00..8.50 rows=450 width=16) (actual time=0.003..0.012 rows=212.00 loops=2)
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=219
+Planning Time: 0.605 ms
+Execution Time: 2.662 ms
