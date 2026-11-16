@@ -1,0 +1,105 @@
+=== R15 run 1 ===
+Limit  (cost=5018.11..5018.16 rows=20 width=61) (actual time=46.652..46.666 rows=20.00 loops=1)
+  Buffers: shared hit=1214
+  ->  Sort  (cost=5018.11..5074.56 rows=22577 width=61) (actual time=46.650..46.662 rows=20.00 loops=1)
+        Sort Key: (sum(ce.winnings)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=1214
+        ->  HashAggregate  (cost=4135.14..4417.35 rows=22577 width=61) (actual time=40.439..44.646 rows=13300.00 loops=1)
+              Group Key: u.username
+              Batches: 1  Memory Usage: 5649kB
+              Buffers: shared hit=1211
+              ->  Hash Join  (cost=2970.73..3909.37 rows=22577 width=25) (actual time=16.846..32.201 rows=22485.00 loops=1)
+                    Hash Cond: (ut.user_id = u.user_id)
+                    Buffers: shared hit=1211
+                    ->  Hash Join  (cost=1232.73..2112.10 rows=22577 width=8) (actual time=6.836..15.426 rows=22485.00 loops=1)
+                          Hash Cond: (ce.user_team_id = ut.user_team_id)
+                          Buffers: shared hit=598
+                          ->  Index Scan using idx_entries_joined_at on contest_entries ce  (cost=0.29..820.39 rows=22577 width=8) (actual time=0.059..2.510 rows=22485.00 loops=1)
+                                Index Cond: (joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                Index Searches: 1
+                                Buffers: shared hit=265
+                          ->  Hash  (cost=732.75..732.75 rows=39975 width=8) (actual time=6.712..6.715 rows=39975.00 loops=1)
+                                Buckets: 65536  Batches: 1  Memory Usage: 2074kB
+                                Buffers: shared hit=333
+                                ->  Seq Scan on user_teams ut  (cost=0.00..732.75 rows=39975 width=8) (actual time=0.012..3.270 rows=39975.00 loops=1)
+                                      Buffers: shared hit=333
+                    ->  Hash  (cost=1113.00..1113.00 rows=50000 width=21) (actual time=9.949..9.949 rows=50000.00 loops=1)
+                          Buckets: 65536  Batches: 1  Memory Usage: 3126kB
+                          Buffers: shared hit=613
+                          ->  Seq Scan on users u  (cost=0.00..1113.00 rows=50000 width=21) (actual time=0.006..4.649 rows=50000.00 loops=1)
+                                Buffers: shared hit=613
+Planning:
+  Buffers: shared hit=372
+Planning Time: 1.341 ms
+Execution Time: 46.895 ms
+=== R15 run 2 ===
+Limit  (cost=5018.11..5018.16 rows=20 width=61) (actual time=47.447..47.455 rows=20.00 loops=1)
+  Buffers: shared hit=1214
+  ->  Sort  (cost=5018.11..5074.56 rows=22577 width=61) (actual time=47.445..47.451 rows=20.00 loops=1)
+        Sort Key: (sum(ce.winnings)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=1214
+        ->  HashAggregate  (cost=4135.14..4417.35 rows=22577 width=61) (actual time=39.228..45.367 rows=13300.00 loops=1)
+              Group Key: u.username
+              Batches: 1  Memory Usage: 5649kB
+              Buffers: shared hit=1211
+              ->  Hash Join  (cost=2970.73..3909.37 rows=22577 width=25) (actual time=16.644..31.382 rows=22485.00 loops=1)
+                    Hash Cond: (ut.user_id = u.user_id)
+                    Buffers: shared hit=1211
+                    ->  Hash Join  (cost=1232.73..2112.10 rows=22577 width=8) (actual time=6.631..14.764 rows=22485.00 loops=1)
+                          Hash Cond: (ce.user_team_id = ut.user_team_id)
+                          Buffers: shared hit=598
+                          ->  Index Scan using idx_entries_joined_at on contest_entries ce  (cost=0.29..820.39 rows=22577 width=8) (actual time=0.031..2.371 rows=22485.00 loops=1)
+                                Index Cond: (joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                Index Searches: 1
+                                Buffers: shared hit=265
+                          ->  Hash  (cost=732.75..732.75 rows=39975 width=8) (actual time=6.525..6.526 rows=39975.00 loops=1)
+                                Buckets: 65536  Batches: 1  Memory Usage: 2074kB
+                                Buffers: shared hit=333
+                                ->  Seq Scan on user_teams ut  (cost=0.00..732.75 rows=39975 width=8) (actual time=0.016..3.178 rows=39975.00 loops=1)
+                                      Buffers: shared hit=333
+                    ->  Hash  (cost=1113.00..1113.00 rows=50000 width=21) (actual time=9.945..9.946 rows=50000.00 loops=1)
+                          Buckets: 65536  Batches: 1  Memory Usage: 3126kB
+                          Buffers: shared hit=613
+                          ->  Seq Scan on users u  (cost=0.00..1113.00 rows=50000 width=21) (actual time=0.005..4.809 rows=50000.00 loops=1)
+                                Buffers: shared hit=613
+Planning:
+  Buffers: shared hit=372
+Planning Time: 1.304 ms
+Execution Time: 47.659 ms
+=== R15 run 3 ===
+Limit  (cost=5018.11..5018.16 rows=20 width=61) (actual time=39.668..39.674 rows=20.00 loops=1)
+  Buffers: shared hit=1214
+  ->  Sort  (cost=5018.11..5074.56 rows=22577 width=61) (actual time=39.667..39.671 rows=20.00 loops=1)
+        Sort Key: (sum(ce.winnings)) DESC
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=1214
+        ->  HashAggregate  (cost=4135.14..4417.35 rows=22577 width=61) (actual time=34.455..37.778 rows=13300.00 loops=1)
+              Group Key: u.username
+              Batches: 1  Memory Usage: 5649kB
+              Buffers: shared hit=1211
+              ->  Hash Join  (cost=2970.73..3909.37 rows=22577 width=25) (actual time=15.279..27.496 rows=22485.00 loops=1)
+                    Hash Cond: (ut.user_id = u.user_id)
+                    Buffers: shared hit=1211
+                    ->  Hash Join  (cost=1232.73..2112.10 rows=22577 width=8) (actual time=5.918..13.026 rows=22485.00 loops=1)
+                          Hash Cond: (ce.user_team_id = ut.user_team_id)
+                          Buffers: shared hit=598
+                          ->  Index Scan using idx_entries_joined_at on contest_entries ce  (cost=0.29..820.39 rows=22577 width=8) (actual time=0.018..2.185 rows=22485.00 loops=1)
+                                Index Cond: (joined_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                                Index Searches: 1
+                                Buffers: shared hit=265
+                          ->  Hash  (cost=732.75..732.75 rows=39975 width=8) (actual time=5.831..5.832 rows=39975.00 loops=1)
+                                Buckets: 65536  Batches: 1  Memory Usage: 2074kB
+                                Buffers: shared hit=333
+                                ->  Seq Scan on user_teams ut  (cost=0.00..732.75 rows=39975 width=8) (actual time=0.012..2.827 rows=39975.00 loops=1)
+                                      Buffers: shared hit=333
+                    ->  Hash  (cost=1113.00..1113.00 rows=50000 width=21) (actual time=9.295..9.295 rows=50000.00 loops=1)
+                          Buckets: 65536  Batches: 1  Memory Usage: 3126kB
+                          Buffers: shared hit=613
+                          ->  Seq Scan on users u  (cost=0.00..1113.00 rows=50000 width=21) (actual time=0.006..4.333 rows=50000.00 loops=1)
+                                Buffers: shared hit=613
+Planning:
+  Buffers: shared hit=372
+Planning Time: 1.264 ms
+Execution Time: 39.823 ms

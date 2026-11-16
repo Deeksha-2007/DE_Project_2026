@@ -1,0 +1,36 @@
+=== W05 run 1 ===
+Update on wallet_transactions  (cost=0.14..8.37 rows=0 width=0) (actual time=2.545..2.546 rows=0.00 loops=1)
+  Buffers: shared hit=1307 read=39 dirtied=63
+  ->  Index Scan using idx_pending_withdrawals on wallet_transactions  (cost=0.14..8.37 rows=10 width=64) (actual time=0.014..0.065 rows=100.00 loops=1)
+        Index Cond: (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval))
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text))
+        Index Searches: 1
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.749 ms
+Execution Time: 2.614 ms
+=== W05 run 2 ===
+Update on wallet_transactions  (cost=0.14..8.37 rows=0 width=0) (actual time=1.250..1.250 rows=0.00 loops=1)
+  Buffers: shared hit=1417 dirtied=1
+  ->  Index Scan using idx_pending_withdrawals on wallet_transactions  (cost=0.14..8.37 rows=10 width=64) (actual time=0.019..0.082 rows=100.00 loops=1)
+        Index Cond: (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval))
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text))
+        Index Searches: 1
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.755 ms
+Execution Time: 1.324 ms
+=== W05 run 3 ===
+Update on wallet_transactions  (cost=0.14..8.37 rows=0 width=0) (actual time=1.173..1.173 rows=0.00 loops=1)
+  Buffers: shared hit=1405 dirtied=1
+  ->  Index Scan using idx_pending_withdrawals on wallet_transactions  (cost=0.14..8.37 rows=10 width=64) (actual time=0.020..0.069 rows=100.00 loops=1)
+        Index Cond: (created_at < ('2026-06-30 23:59:00+05:30'::timestamp with time zone - '24:00:00'::interval))
+        Filter: (((txn_type)::text = 'WITHDRAWAL'::text) AND ((status)::text = 'PENDING'::text))
+        Index Searches: 1
+        Buffers: shared hit=13
+Planning:
+  Buffers: shared hit=200
+Planning Time: 0.801 ms
+Execution Time: 1.248 ms

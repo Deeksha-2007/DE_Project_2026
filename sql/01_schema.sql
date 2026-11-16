@@ -218,7 +218,7 @@ CREATE TABLE contest_entries (
     user_team_id INTEGER NOT NULL,
     joined_at TIMESTAMPTZ NOT NULL,
     final_rank INTEGER,
-    winnings NUMERIC(12,2) NOT NULL,
+    winnings NUMERIC(12,2) NOT NULL DEFAULT 0,
 
     CONSTRAINT fk_entries_contest
         FOREIGN KEY (contest_id)
