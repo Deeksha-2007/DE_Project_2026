@@ -74,3 +74,7 @@ ON wallet_transactions(created_at DESC, txn_id DESC);
 
 -- Update planner statistics after creating indexes
 ANALYZE;
+
+-- R05: leaderboard reads team + user columns for every entry; covering index avoids heap visits
+CREATE INDEX IF NOT EXISTS idx_user_teams_cover ON dream11.user_teams (user_team_id) INCLUDE (user_id, team_label, total_points);
+CREATE INDEX IF NOT EXISTS idx_users_cover ON dream11.users (user_id) INCLUDE (username);

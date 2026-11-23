@@ -1,0 +1,84 @@
+=== R13 run 1 ===
+Gather  (cost=6637.77..33296.12 rows=33096 width=16) (actual time=51.787..55.072 rows=816.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=2007 read=13529
+  ->  Parallel Hash Right Anti Join  (cost=5637.77..28986.52 rows=13790 width=16) (actual time=49.997..51.003 rows=272.00 loops=3)
+        Hash Cond: (w.reference_entry_id = ce.entry_id)
+        Buffers: shared hit=2007 read=13529
+        ->  Parallel Seq Scan on wallet_transactions w  (cost=0.00..20102.92 rows=657392 width=4) (actual time=0.080..14.596 rows=525913.33 loops=3)
+              Buffers: shared read=13529
+        ->  Parallel Hash  (cost=3834.52..3834.52 rows=144260 width=16) (actual time=12.390..12.391 rows=81747.33 loops=3)
+              Buckets: 262144  Batches: 1  Memory Usage: 13600kB
+              Buffers: shared hit=2007
+              ->  Hash Join  (cost=92.60..3834.52 rows=144260 width=16) (actual time=0.292..8.100 rows=81747.33 loops=3)
+                    Hash Cond: (ce.contest_id = c.contest_id)
+                    Buffers: shared hit=2007
+                    ->  Parallel Seq Scan on contest_entries ce  (cost=0.00..3362.60 rows=144260 width=16) (actual time=0.002..2.293 rows=81747.33 loops=3)
+                          Buffers: shared hit=1920
+                    ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.283..0.283 rows=2544.00 loops=3)
+                          Buckets: 4096  Batches: 1  Memory Usage: 122kB
+                          Buffers: shared hit=87
+                          ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.016..0.185 rows=2544.00 loops=3)
+                                Filter: (entry_fee > '0'::numeric)
+                                Buffers: shared hit=87
+Planning:
+  Buffers: shared hit=429 read=13
+Planning Time: 1.884 ms
+Execution Time: 55.119 ms
+=== R13 run 2 ===
+Gather  (cost=6637.77..33296.12 rows=33096 width=16) (actual time=51.929..54.101 rows=816.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=2289 read=13247
+  ->  Parallel Hash Right Anti Join  (cost=5637.77..28986.52 rows=13790 width=16) (actual time=48.640..49.692 rows=272.00 loops=3)
+        Hash Cond: (w.reference_entry_id = ce.entry_id)
+        Buffers: shared hit=2289 read=13247
+        ->  Parallel Seq Scan on wallet_transactions w  (cost=0.00..20102.92 rows=657392 width=4) (actual time=0.058..13.625 rows=525913.33 loops=3)
+              Buffers: shared hit=282 read=13247
+        ->  Parallel Hash  (cost=3834.52..3834.52 rows=144260 width=16) (actual time=12.475..12.476 rows=81747.33 loops=3)
+              Buckets: 262144  Batches: 1  Memory Usage: 13600kB
+              Buffers: shared hit=2007
+              ->  Hash Join  (cost=92.60..3834.52 rows=144260 width=16) (actual time=0.302..7.970 rows=81747.33 loops=3)
+                    Hash Cond: (ce.contest_id = c.contest_id)
+                    Buffers: shared hit=2007
+                    ->  Parallel Seq Scan on contest_entries ce  (cost=0.00..3362.60 rows=144260 width=16) (actual time=0.002..2.266 rows=81747.33 loops=3)
+                          Buffers: shared hit=1920
+                    ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.294..0.295 rows=2544.00 loops=3)
+                          Buckets: 4096  Batches: 1  Memory Usage: 122kB
+                          Buffers: shared hit=87
+                          ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.017..0.191 rows=2544.00 loops=3)
+                                Filter: (entry_fee > '0'::numeric)
+                                Buffers: shared hit=87
+Planning:
+  Buffers: shared hit=442
+Planning Time: 0.739 ms
+Execution Time: 54.141 ms
+=== R13 run 3 ===
+Gather  (cost=6637.77..33296.12 rows=33096 width=16) (actual time=50.094..52.290 rows=816.00 loops=1)
+  Workers Planned: 2
+  Workers Launched: 2
+  Buffers: shared hit=2571 read=12965
+  ->  Parallel Hash Right Anti Join  (cost=5637.77..28986.52 rows=13790 width=16) (actual time=46.849..47.962 rows=272.00 loops=3)
+        Hash Cond: (w.reference_entry_id = ce.entry_id)
+        Buffers: shared hit=2571 read=12965
+        ->  Parallel Seq Scan on wallet_transactions w  (cost=0.00..20102.92 rows=657392 width=4) (actual time=0.060..13.246 rows=525913.33 loops=3)
+              Buffers: shared hit=564 read=12965
+        ->  Parallel Hash  (cost=3834.52..3834.52 rows=144260 width=16) (actual time=12.089..12.090 rows=81747.33 loops=3)
+              Buckets: 262144  Batches: 1  Memory Usage: 13600kB
+              Buffers: shared hit=2007
+              ->  Hash Join  (cost=92.60..3834.52 rows=144260 width=16) (actual time=0.275..7.893 rows=81747.33 loops=3)
+                    Hash Cond: (ce.contest_id = c.contest_id)
+                    Buffers: shared hit=2007
+                    ->  Parallel Seq Scan on contest_entries ce  (cost=0.00..3362.60 rows=144260 width=16) (actual time=0.002..2.235 rows=81747.33 loops=3)
+                          Buffers: shared hit=1920
+                    ->  Hash  (cost=60.80..60.80 rows=2544 width=4) (actual time=0.268..0.268 rows=2544.00 loops=3)
+                          Buckets: 4096  Batches: 1  Memory Usage: 122kB
+                          Buffers: shared hit=87
+                          ->  Seq Scan on contests c  (cost=0.00..60.80 rows=2544 width=4) (actual time=0.014..0.174 rows=2544.00 loops=3)
+                                Filter: (entry_fee > '0'::numeric)
+                                Buffers: shared hit=87
+Planning:
+  Buffers: shared hit=442
+Planning Time: 0.712 ms
+Execution Time: 52.328 ms

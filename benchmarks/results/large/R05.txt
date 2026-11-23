@@ -1,0 +1,114 @@
+=== R05 run 1 ===
+Limit  (cost=4645.14..4645.39 rows=100 width=34) (actual time=114.240..114.246 rows=100.00 loops=1)
+  Buffers: shared hit=4674 read=1948
+  ->  Sort  (cost=4645.14..4647.65 rows=1005 width=34) (actual time=114.240..114.242 rows=100.00 loops=1)
+        Sort Key: (rank() OVER w1)
+        Sort Method: top-N heapsort  Memory: 32kB
+        Buffers: shared hit=4674 read=1948
+        ->  WindowAgg  (cost=4589.16..4606.73 rows=1005 width=34) (actual time=113.976..114.163 rows=1101.00 loops=1)
+              Window: w1 AS (ORDER BY ut.total_points ROWS UNBOUNDED PRECEDING)
+              Storage: Memory  Maximum Storage: 17kB
+              Buffers: shared hit=4671 read=1948
+              ->  Sort  (cost=4589.14..4591.65 rows=1005 width=26) (actual time=113.964..113.985 rows=1101.00 loops=1)
+                    Sort Key: ut.total_points DESC
+                    Sort Method: quicksort  Memory: 99kB
+                    Buffers: shared hit=4671 read=1948
+                    ->  Nested Loop  (cost=1.27..4539.03 rows=1005 width=26) (actual time=0.298..113.757 rows=1101.00 loops=1)
+                          Buffers: shared hit=4668 read=1948
+                          ->  Nested Loop  (cost=0.84..4068.47 rows=1005 width=12) (actual time=0.113..35.418 rows=1101.00 loops=1)
+                                Buffers: shared hit=2354 read=958
+                                ->  Index Only Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..67.76 rows=1005 width=4) (actual time=0.108..0.394 rows=1101.00 loops=1)
+                                      Index Cond: (contest_id = 2185)
+                                      Heap Fetches: 0
+                                      Index Searches: 1
+                                      Buffers: shared hit=3 read=5
+                                ->  Index Only Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..3.98 rows=1 width=16) (actual time=0.032..0.032 rows=1.00 loops=1101)
+                                      Index Cond: (user_team_id = ce.user_team_id)
+                                      Heap Fetches: 0
+                                      Index Searches: 1101
+                                      Buffers: shared hit=2351 read=953
+                          ->  Index Only Scan using idx_users_cover on users u  (cost=0.42..0.47 rows=1 width=22) (actual time=0.071..0.071 rows=1.00 loops=1101)
+                                Index Cond: (user_id = ut.user_id)
+                                Heap Fetches: 0
+                                Index Searches: 1101
+                                Buffers: shared hit=2314 read=990
+Planning:
+  Buffers: shared hit=469 read=6
+Planning Time: 1.424 ms
+Execution Time: 114.279 ms
+=== R05 run 2 ===
+Limit  (cost=4645.14..4645.39 rows=100 width=34) (actual time=3.600..3.606 rows=100.00 loops=1)
+  Buffers: shared hit=6622
+  ->  Sort  (cost=4645.14..4647.65 rows=1005 width=34) (actual time=3.600..3.602 rows=100.00 loops=1)
+        Sort Key: (rank() OVER w1)
+        Sort Method: top-N heapsort  Memory: 32kB
+        Buffers: shared hit=6622
+        ->  WindowAgg  (cost=4589.16..4606.73 rows=1005 width=34) (actual time=3.345..3.527 rows=1101.00 loops=1)
+              Window: w1 AS (ORDER BY ut.total_points ROWS UNBOUNDED PRECEDING)
+              Storage: Memory  Maximum Storage: 17kB
+              Buffers: shared hit=6619
+              ->  Sort  (cost=4589.14..4591.65 rows=1005 width=26) (actual time=3.341..3.360 rows=1101.00 loops=1)
+                    Sort Key: ut.total_points DESC
+                    Sort Method: quicksort  Memory: 99kB
+                    Buffers: shared hit=6619
+                    ->  Nested Loop  (cost=1.27..4539.03 rows=1005 width=26) (actual time=0.014..3.192 rows=1101.00 loops=1)
+                          Buffers: shared hit=6616
+                          ->  Nested Loop  (cost=0.84..4068.47 rows=1005 width=12) (actual time=0.009..1.563 rows=1101.00 loops=1)
+                                Buffers: shared hit=3312
+                                ->  Index Only Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..67.76 rows=1005 width=4) (actual time=0.006..0.038 rows=1101.00 loops=1)
+                                      Index Cond: (contest_id = 2185)
+                                      Heap Fetches: 0
+                                      Index Searches: 1
+                                      Buffers: shared hit=8
+                                ->  Index Only Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..3.98 rows=1 width=16) (actual time=0.001..0.001 rows=1.00 loops=1101)
+                                      Index Cond: (user_team_id = ce.user_team_id)
+                                      Heap Fetches: 0
+                                      Index Searches: 1101
+                                      Buffers: shared hit=3304
+                          ->  Index Only Scan using idx_users_cover on users u  (cost=0.42..0.47 rows=1 width=22) (actual time=0.001..0.001 rows=1.00 loops=1101)
+                                Index Cond: (user_id = ut.user_id)
+                                Heap Fetches: 0
+                                Index Searches: 1101
+                                Buffers: shared hit=3304
+Planning:
+  Buffers: shared hit=475
+Planning Time: 0.717 ms
+Execution Time: 3.652 ms
+=== R05 run 3 ===
+Limit  (cost=4645.14..4645.39 rows=100 width=34) (actual time=3.410..3.415 rows=100.00 loops=1)
+  Buffers: shared hit=6622
+  ->  Sort  (cost=4645.14..4647.65 rows=1005 width=34) (actual time=3.409..3.411 rows=100.00 loops=1)
+        Sort Key: (rank() OVER w1)
+        Sort Method: top-N heapsort  Memory: 32kB
+        Buffers: shared hit=6622
+        ->  WindowAgg  (cost=4589.16..4606.73 rows=1005 width=34) (actual time=3.155..3.334 rows=1101.00 loops=1)
+              Window: w1 AS (ORDER BY ut.total_points ROWS UNBOUNDED PRECEDING)
+              Storage: Memory  Maximum Storage: 17kB
+              Buffers: shared hit=6619
+              ->  Sort  (cost=4589.14..4591.65 rows=1005 width=26) (actual time=3.152..3.171 rows=1101.00 loops=1)
+                    Sort Key: ut.total_points DESC
+                    Sort Method: quicksort  Memory: 99kB
+                    Buffers: shared hit=6619
+                    ->  Nested Loop  (cost=1.27..4539.03 rows=1005 width=26) (actual time=0.013..3.011 rows=1101.00 loops=1)
+                          Buffers: shared hit=6616
+                          ->  Nested Loop  (cost=0.84..4068.47 rows=1005 width=12) (actual time=0.009..1.478 rows=1101.00 loops=1)
+                                Buffers: shared hit=3312
+                                ->  Index Only Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..67.76 rows=1005 width=4) (actual time=0.006..0.038 rows=1101.00 loops=1)
+                                      Index Cond: (contest_id = 2185)
+                                      Heap Fetches: 0
+                                      Index Searches: 1
+                                      Buffers: shared hit=8
+                                ->  Index Only Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..3.98 rows=1 width=16) (actual time=0.001..0.001 rows=1.00 loops=1101)
+                                      Index Cond: (user_team_id = ce.user_team_id)
+                                      Heap Fetches: 0
+                                      Index Searches: 1101
+                                      Buffers: shared hit=3304
+                          ->  Index Only Scan using idx_users_cover on users u  (cost=0.42..0.47 rows=1 width=22) (actual time=0.001..0.001 rows=1.00 loops=1101)
+                                Index Cond: (user_id = ut.user_id)
+                                Heap Fetches: 0
+                                Index Searches: 1101
+                                Buffers: shared hit=3304
+Planning:
+  Buffers: shared hit=475
+Planning Time: 0.688 ms
+Execution Time: 3.442 ms
