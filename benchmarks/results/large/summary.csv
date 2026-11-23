@@ -1,31 +1,31 @@
 query_id,type,avg_ms,median_ms,min_ms,max_ms,scan_nodes
-R01,READ,0.144,0.128,0.121,0.183,Seq Scan on matches | Seq Scan on teams | Index Scan using idx_contests_match on contests
-R02,READ,13.082,9.770,9.706,19.769,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Index Only Scan using idx_user_teams_match_id on user_teams | Seq Scan on matches | Seq Scan on players | Seq Scan on teams
-R03,READ,0.037,0.037,0.037,0.037,Index Scan using idx_user_teams_user_match on user_teams | Index Scan using players_pkey on players
-R04,READ,0.327,0.304,0.302,0.376,Index Scan using idx_contests_match on contests | Index Scan using uq_contest_user_team on contest_entries
-R05,READ,6.276,4.750,4.446,9.631,Index Only Scan using uq_contest_user_team on contest_entries | Index Only Scan using idx_user_teams_cover on user_teams | Index Only Scan using idx_users_cover on users
-R06,READ,44.603,40.207,37.884,55.719,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Seq Scan on players
-R07,READ,0.038,0.035,0.034,0.044,Index Scan using idx_user_teams_user_match on user_teams | Index Only Scan using pk_user_team_players on user_team_players | Index Scan using players_pkey on players | Index Scan using pk_player_match_stats on player_match_stats
-R08,READ,4.726,4.089,4.016,6.074,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Seq Scan on players
-R09,READ,0.051,0.051,0.045,0.056,Index Scan using idx_wallet_user_status on wallet_transactions
-R10,READ,0.435,0.385,0.372,0.547,Index Scan using idx_pending_withdrawals on wallet_transactions
-R11,READ,82.053,82.128,77.467,86.564,Seq Scan on user_teams | Bitmap Heap Scan on users | Bitmap Index Scan on idx_users_state_code | Seq Scan on contest_entries | Seq Scan on contests
-R12,READ,1.023,0.982,0.960,1.128,Seq Scan on player_match_stats | Seq Scan on matches | Seq Scan on players | Seq Scan on teams
-R13,READ,54.010,52.891,52.527,56.613,Seq Scan on wallet_transactions | Seq Scan on contest_entries | Seq Scan on contests
-R14,READ,72.013,71.544,70.771,73.725,Seq Scan on contest_entries | Seq Scan on contests | Seq Scan on matches
-R15,READ,147.596,146.842,145.521,150.426,Seq Scan on users | Seq Scan on user_teams | Seq Scan on contest_entries
-R16,READ,0.208,0.208,0.204,0.213,Seq Scan on players | Seq Scan on teams
-R17,READ,173.045,171.605,170.230,177.299,Seq Scan on user_teams | Seq Scan on contest_entries
-R18,READ,30.803,30.871,30.407,31.130,Seq Scan on users | Index Only Scan using idx_successful_winnings on wallet_transactions
-R19,READ,365.022,350.043,304.488,440.536,Seq Scan on players | Seq Scan on teams | Seq Scan on user_team_players
-R20,READ,11.244,11.424,10.459,11.848,Index Only Scan using idx_successful_deposits on wallet_transactions
-R21,READ,31.850,31.128,30.921,33.500,Seq Scan on user_teams | Seq Scan on contest_entries | Bitmap Heap Scan on contests | Bitmap Index Scan on idx_contests_type
-R22,READ,5.512,5.094,5.040,6.403,Index Only Scan using idx_wallet_created_txn on wallet_transactions | Index Scan using idx_wallet_created_txn on wallet_transactions
-R23,READ,0.036,0.032,0.032,0.045,Index Scan using users_phone_key on users
-R24,READ,0.672,0.651,0.633,0.733,Seq Scan on player_match_stats | Seq Scan on players | Seq Scan on teams | Seq Scan on matches
-R25,READ,25.699,25.779,25.517,25.802,Seq Scan on user_teams | Seq Scan on matches | Index Scan using idx_entries_user_team on contest_entries | Index Only Scan using idx_wallet_refund_reference on wallet_transactions | Seq Scan on contests
-W01,WRITE,0.964,0.722,0.693,1.477,Seq Scan on matches
-W02,WRITE,0.458,0.335,0.322,0.716,Index Scan using user_teams_pkey on user_teams | Index Scan using idx_contests_match on contests | Index Scan using idx_user_teams_cover on user_teams
-W03,WRITE,0.779,0.589,0.561,1.187,Index Only Scan using contest_entries_pkey on contest_entries | Index Scan using contest_entries_pkey on contest_entries | Index Scan using contests_pkey on contests | Index Only Scan using idx_user_teams_cover on user_teams
-W04,WRITE,182.074,101.479,85.434,359.308,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Index Scan using pk_player_match_stats on player_match_stats
-W05,WRITE,12.778,11.961,10.740,15.633,Index Scan using idx_pending_withdrawals on wallet_transactions
+R01,READ,0.155,0.132,0.131,0.203,Seq Scan on matches | Seq Scan on teams | Index Scan using idx_contests_match on contests
+R02,READ,13.269,10.013,9.613,20.181,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Index Only Scan using idx_user_teams_match_id on user_teams | Seq Scan on matches | Seq Scan on players | Seq Scan on teams
+R03,READ,0.037,0.037,0.035,0.039,Index Scan using idx_user_teams_user_match on user_teams | Index Scan using players_pkey on players
+R04,READ,0.322,0.312,0.301,0.354,Index Scan using idx_contests_match on contests | Index Scan using uq_contest_user_team on contest_entries
+R05,READ,6.355,4.981,4.906,9.177,Index Only Scan using uq_contest_user_team on contest_entries | Index Only Scan using idx_user_teams_cover on user_teams | Index Only Scan using idx_users_cover on users
+R06,READ,47.210,42.517,39.878,59.236,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Seq Scan on players
+R07,READ,0.033,0.034,0.032,0.034,Index Scan using idx_user_teams_user_match on user_teams | Index Only Scan using pk_user_team_players on user_team_players | Index Scan using players_pkey on players | Index Scan using pk_player_match_stats on player_match_stats
+R08,READ,4.447,3.944,3.811,5.586,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Seq Scan on players
+R09,READ,0.048,0.047,0.043,0.054,Index Scan using idx_wallet_user_status on wallet_transactions
+R10,READ,0.437,0.373,0.365,0.572,Index Scan using idx_pending_withdrawals on wallet_transactions
+R11,READ,83.247,83.437,77.991,88.312,Seq Scan on user_teams | Bitmap Heap Scan on users | Bitmap Index Scan on idx_users_state_code | Seq Scan on contest_entries | Seq Scan on contests
+R12,READ,1.033,1.004,0.999,1.096,Seq Scan on player_match_stats | Seq Scan on matches | Seq Scan on players | Seq Scan on teams
+R13,READ,53.253,53.327,52.589,53.844,Seq Scan on wallet_transactions | Seq Scan on contest_entries | Seq Scan on contests
+R14,READ,73.174,72.090,71.418,76.014,Seq Scan on contest_entries | Seq Scan on contests | Seq Scan on matches
+R15,READ,144.371,142.425,141.764,148.924,Seq Scan on users | Seq Scan on user_teams | Seq Scan on contest_entries
+R16,READ,0.216,0.211,0.199,0.237,Seq Scan on players | Seq Scan on teams
+R17,READ,177.474,171.831,170.595,189.996,Seq Scan on user_teams | Seq Scan on contest_entries
+R18,READ,30.393,29.997,29.701,31.482,Seq Scan on users | Index Only Scan using idx_successful_winnings on wallet_transactions
+R19,READ,297.258,282.112,254.908,354.755,Seq Scan on players | Seq Scan on teams | Seq Scan on user_team_players
+R20,READ,10.401,9.920,9.684,11.598,Index Only Scan using idx_successful_deposits on wallet_transactions
+R21,READ,28.389,28.438,28.151,28.579,Seq Scan on user_teams | Seq Scan on contest_entries | Bitmap Heap Scan on contests | Bitmap Index Scan on idx_contests_type
+R22,READ,4.859,4.555,4.535,5.488,Index Only Scan using idx_wallet_created_txn on wallet_transactions | Index Scan using idx_wallet_created_txn on wallet_transactions
+R23,READ,0.188,0.029,0.026,0.509,Index Scan using users_phone_key on users
+R24,READ,0.580,0.551,0.544,0.645,Seq Scan on player_match_stats | Seq Scan on players | Seq Scan on teams | Seq Scan on matches
+R25,READ,22.974,22.883,22.822,23.218,Seq Scan on user_teams | Seq Scan on matches | Index Scan using idx_entries_user_team on contest_entries | Index Only Scan using idx_wallet_refund_reference on wallet_transactions | Seq Scan on contests
+W01,WRITE,0.862,0.614,0.604,1.368,Seq Scan on matches
+W02,WRITE,0.583,0.307,0.278,1.164,Index Scan using user_teams_pkey on user_teams | Index Scan using idx_contests_match on contests | Index Scan using idx_user_teams_cover on user_teams
+W03,WRITE,0.820,0.558,0.517,1.384,Index Only Scan using contest_entries_pkey on contest_entries | Index Scan using contest_entries_pkey on contest_entries | Index Scan using contests_pkey on contests | Index Only Scan using idx_user_teams_cover on user_teams
+W04,WRITE,186.946,102.299,67.679,390.860,Bitmap Heap Scan on user_teams | Bitmap Index Scan on idx_user_teams_match_id | Index Only Scan using pk_user_team_players on user_team_players | Index Scan using pk_player_match_stats on player_match_stats
+W05,WRITE,12.215,13.018,10.114,13.513,Index Scan using idx_pending_withdrawals on wallet_transactions

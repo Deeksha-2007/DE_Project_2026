@@ -1,0 +1,19 @@
+ db_size 
+---------
+ 86 MB
+(1 row)
+
+        table        | approx_rows | table_size | index_size 
+---------------------+-------------+------------+------------
+ user_team_players   |      439925 | 16 MB      | 13 MB
+ wallet_transactions |      118343 | 8800 kB    | 13 MB
+ users               |       50000 | 4936 kB    | 9568 kB
+ contest_entries     |       42746 | 2656 kB    | 4144 kB
+ user_teams          |       39975 | 2696 kB    | 3424 kB
+ contests            |        2544 | 264 kB     | 200 kB
+ player_match_stats  |        4444 | 336 kB     | 112 kB
+ players             |         450 | 64 kB      | 32 kB
+ matches             |         212 | 56 kB      | 16 kB
+ teams               |          18 | 40 kB      | 16 kB
+(10 rows)
+

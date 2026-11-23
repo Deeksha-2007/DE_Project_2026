@@ -1,99 +1,99 @@
 === R18 run 1 ===
-Sort  (cost=24252.27..24266.93 rows=5861 width=62) (actual time=30.986..31.063 rows=277.00 loops=1)
+Sort  (cost=24690.38..24705.14 rows=5904 width=62) (actual time=31.335..31.410 rows=277.00 loops=1)
   Sort Key: (sum(w.amount)) DESC
   Sort Method: quicksort  Memory: 40kB
-  Buffers: shared hit=11928 read=921
-  ->  HashAggregate  (cost=23621.72..23885.47 rows=5861 width=62) (actual time=28.337..31.010 rows=277.00 loops=1)
+  Buffers: shared hit=12006 read=843
+  ->  HashAggregate  (cost=24054.89..24320.57 rows=5904 width=62) (actual time=28.685..31.357 rows=277.00 loops=1)
         Group Key: u.username
         Filter: (sum(w.amount) > '1000'::numeric)
         Batches: 1  Memory Usage: 6929kB
         Rows Removed by Filter: 15998
-        Buffers: shared hit=11925 read=921
-        ->  Gather  (cost=3717.18..23533.81 rows=17583 width=35) (actual time=3.834..25.195 rows=17775.00 loops=1)
+        Buffers: shared hit=12003 read=843
+        ->  Gather  (cost=4136.59..23966.33 rows=17712 width=35) (actual time=3.969..25.282 rows=17775.00 loops=1)
               Workers Planned: 2
               Workers Launched: 2
-              Buffers: shared hit=11925 read=921
-              ->  Parallel Hash Join  (cost=2717.18..20775.51 rows=7326 width=35) (actual time=2.614..25.371 rows=5925.00 loops=3)
+              Buffers: shared hit=12003 read=843
+              ->  Parallel Hash Join  (cost=3136.59..21195.13 rows=7380 width=35) (actual time=2.648..25.591 rows=5925.00 loops=3)
                     Hash Cond: (u.user_id = w.user_id)
-                    Buffers: shared hit=11925 read=921
-                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.044..17.851 rows=83458.00 loops=3)
+                    Buffers: shared hit=12003 read=843
+                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.020..18.056 rows=83458.00 loops=3)
                           Filter: ((kyc_status)::text <> 'VERIFIED'::text)
                           Rows Removed by Filter: 249875
-                          Buffers: shared hit=11786 read=642
-                    ->  Parallel Hash  (cost=2351.65..2351.65 rows=29243 width=9) (actual time=2.526..2.526 rows=23613.33 loops=3)
+                          Buffers: shared hit=11864 read=564
+                    ->  Parallel Hash  (cost=2768.37..2768.37 rows=29458 width=9) (actual time=2.583..2.583 rows=23613.33 loops=3)
                           Buckets: 131072  Batches: 1  Memory Usage: 4416kB
                           Buffers: shared hit=139 read=279
-                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2351.65 rows=29243 width=9) (actual time=0.036..1.255 rows=23613.33 loops=3)
+                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2768.37 rows=29458 width=9) (actual time=0.042..1.293 rows=23613.33 loops=3)
                                 Heap Fetches: 280
                                 Index Searches: 1
                                 Buffers: shared hit=139 read=279
 Planning:
-  Buffers: shared hit=363 read=17
-Planning Time: 0.961 ms
-Execution Time: 31.130 ms
+  Buffers: shared hit=371 read=9
+Planning Time: 0.911 ms
+Execution Time: 31.482 ms
 === R18 run 2 ===
-Sort  (cost=24252.27..24266.93 rows=5861 width=62) (actual time=30.733..30.810 rows=277.00 loops=1)
+Sort  (cost=24690.38..24705.14 rows=5904 width=62) (actual time=29.564..29.640 rows=277.00 loops=1)
   Sort Key: (sum(w.amount)) DESC
   Sort Method: quicksort  Memory: 40kB
-  Buffers: shared hit=12491 read=360
-  ->  HashAggregate  (cost=23621.72..23885.47 rows=5861 width=62) (actual time=28.016..30.760 rows=277.00 loops=1)
+  Buffers: shared hit=12567 read=282
+  ->  HashAggregate  (cost=24054.89..24320.57 rows=5904 width=62) (actual time=26.844..29.589 rows=277.00 loops=1)
         Group Key: u.username
         Filter: (sum(w.amount) > '1000'::numeric)
         Batches: 1  Memory Usage: 6929kB
         Rows Removed by Filter: 15998
-        Buffers: shared hit=12488 read=360
-        ->  Gather  (cost=3717.18..23533.81 rows=17583 width=35) (actual time=3.749..24.751 rows=17775.00 loops=1)
+        Buffers: shared hit=12564 read=282
+        ->  Gather  (cost=4136.59..23966.33 rows=17712 width=35) (actual time=3.557..23.596 rows=17775.00 loops=1)
               Workers Planned: 2
               Workers Launched: 2
-              Buffers: shared hit=12488 read=360
-              ->  Parallel Hash Join  (cost=2717.18..20775.51 rows=7326 width=35) (actual time=2.591..25.079 rows=5925.00 loops=3)
+              Buffers: shared hit=12564 read=282
+              ->  Parallel Hash Join  (cost=3136.59..21195.13 rows=7380 width=35) (actual time=2.368..23.958 rows=5925.00 loops=3)
                     Hash Cond: (u.user_id = w.user_id)
-                    Buffers: shared hit=12488 read=360
-                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.216..17.786 rows=83458.00 loops=3)
+                    Buffers: shared hit=12564 read=282
+                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.028..16.827 rows=83458.00 loops=3)
                           Filter: ((kyc_status)::text <> 'VERIFIED'::text)
                           Rows Removed by Filter: 249875
-                          Buffers: shared hit=12068 read=360
-                    ->  Parallel Hash  (cost=2351.65..2351.65 rows=29243 width=9) (actual time=2.331..2.331 rows=23613.33 loops=3)
-                          Buckets: 131072  Batches: 1  Memory Usage: 4384kB
-                          Buffers: shared hit=420
-                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2351.65 rows=29243 width=9) (actual time=0.016..1.079 rows=23613.33 loops=3)
-                                Heap Fetches: 280
-                                Index Searches: 1
-                                Buffers: shared hit=420
-Planning:
-  Buffers: shared hit=380
-Planning Time: 0.610 ms
-Execution Time: 30.871 ms
-=== R18 run 3 ===
-Sort  (cost=24252.27..24266.93 rows=5861 width=62) (actual time=30.258..30.342 rows=277.00 loops=1)
-  Sort Key: (sum(w.amount)) DESC
-  Sort Method: quicksort  Memory: 40kB
-  Buffers: shared hit=12771 read=78
-  ->  HashAggregate  (cost=23621.72..23885.47 rows=5861 width=62) (actual time=27.525..30.285 rows=277.00 loops=1)
-        Group Key: u.username
-        Filter: (sum(w.amount) > '1000'::numeric)
-        Batches: 1  Memory Usage: 6929kB
-        Rows Removed by Filter: 15998
-        Buffers: shared hit=12768 read=78
-        ->  Gather  (cost=3717.18..23533.81 rows=17583 width=35) (actual time=3.562..24.237 rows=17775.00 loops=1)
-              Workers Planned: 2
-              Workers Launched: 2
-              Buffers: shared hit=12768 read=78
-              ->  Parallel Hash Join  (cost=2717.18..20775.51 rows=7326 width=35) (actual time=2.350..24.527 rows=5925.00 loops=3)
-                    Hash Cond: (u.user_id = w.user_id)
-                    Buffers: shared hit=12768 read=78
-                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.048..17.451 rows=83458.00 loops=3)
-                          Filter: ((kyc_status)::text <> 'VERIFIED'::text)
-                          Rows Removed by Filter: 249875
-                          Buffers: shared hit=12350 read=78
-                    ->  Parallel Hash  (cost=2351.65..2351.65 rows=29243 width=9) (actual time=2.245..2.245 rows=23613.33 loops=3)
+                          Buffers: shared hit=12146 read=282
+                    ->  Parallel Hash  (cost=2768.37..2768.37 rows=29458 width=9) (actual time=2.289..2.289 rows=23613.33 loops=3)
                           Buckets: 131072  Batches: 1  Memory Usage: 4384kB
                           Buffers: shared hit=418
-                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2351.65 rows=29243 width=9) (actual time=0.015..1.005 rows=23613.33 loops=3)
+                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2768.37 rows=29458 width=9) (actual time=0.015..1.016 rows=23613.33 loops=3)
                                 Heap Fetches: 280
                                 Index Searches: 1
                                 Buffers: shared hit=418
 Planning:
   Buffers: shared hit=380
-Planning Time: 0.638 ms
-Execution Time: 30.407 ms
+Planning Time: 0.639 ms
+Execution Time: 29.701 ms
+=== R18 run 3 ===
+Sort  (cost=24690.38..24705.14 rows=5904 width=62) (actual time=29.856..29.933 rows=277.00 loops=1)
+  Sort Key: (sum(w.amount)) DESC
+  Sort Method: quicksort  Memory: 40kB
+  Buffers: shared hit=12821 read=28
+  ->  HashAggregate  (cost=24054.89..24320.57 rows=5904 width=62) (actual time=27.050..29.881 rows=277.00 loops=1)
+        Group Key: u.username
+        Filter: (sum(w.amount) > '1000'::numeric)
+        Batches: 1  Memory Usage: 6929kB
+        Rows Removed by Filter: 15998
+        Buffers: shared hit=12818 read=28
+        ->  Gather  (cost=4136.59..23966.33 rows=17712 width=35) (actual time=3.590..23.859 rows=17775.00 loops=1)
+              Workers Planned: 2
+              Workers Launched: 2
+              Buffers: shared hit=12818 read=28
+              ->  Parallel Hash Join  (cost=3136.59..21195.13 rows=7380 width=35) (actual time=2.389..24.144 rows=5925.00 loops=3)
+                    Hash Cond: (u.user_id = w.user_id)
+                    Buffers: shared hit=12818 read=28
+                    ->  Parallel Seq Scan on users u  (cost=0.00..17636.33 rows=104389 width=30) (actual time=0.004..17.086 rows=83458.00 loops=3)
+                          Filter: ((kyc_status)::text <> 'VERIFIED'::text)
+                          Rows Removed by Filter: 249875
+                          Buffers: shared hit=12400 read=28
+                    ->  Parallel Hash  (cost=2768.37..2768.37 rows=29458 width=9) (actual time=2.344..2.344 rows=23613.33 loops=3)
+                          Buckets: 131072  Batches: 1  Memory Usage: 4416kB
+                          Buffers: shared hit=418
+                          ->  Parallel Index Only Scan using idx_successful_winnings on wallet_transactions w  (cost=0.29..2768.37 rows=29458 width=9) (actual time=0.016..1.041 rows=23613.33 loops=3)
+                                Heap Fetches: 280
+                                Index Searches: 1
+                                Buffers: shared hit=418
+Planning:
+  Buffers: shared hit=380
+Planning Time: 0.637 ms
+Execution Time: 29.997 ms

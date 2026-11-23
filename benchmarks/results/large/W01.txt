@@ -1,45 +1,45 @@
 === W01 run 1 ===
-Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.870..0.870 rows=0.00 loops=1)
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.698..0.699 rows=0.00 loops=1)
   Buffers: shared hit=83 read=7 dirtied=5
-  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.013..0.014 rows=1.00 loops=1)
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.012..0.013 rows=1.00 loops=1)
         Filter: (match_id = 207)
         Rows Removed by Filter: 211
         Buffers: shared hit=3
 Planning:
   Buffers: shared hit=70
-Planning Time: 0.182 ms
-Trigger for constraint fk_user_teams_user: time=0.395 calls=1
-Trigger for constraint fk_user_teams_match: time=0.059 calls=1
-Trigger for constraint fk_user_teams_captain: time=0.116 calls=1
-Trigger for constraint fk_user_teams_vice_captain: time=0.021 calls=1
-Execution Time: 1.477 ms
-=== W01 run 2 ===
-Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.172..0.172 rows=0.00 loops=1)
-  Buffers: shared hit=91
-  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.014..0.014 rows=1.00 loops=1)
-        Filter: (match_id = 207)
-        Rows Removed by Filter: 211
-        Buffers: shared hit=3
-Planning:
-  Buffers: shared hit=70
-Planning Time: 0.203 ms
-Trigger for constraint fk_user_teams_user: time=0.341 calls=1
-Trigger for constraint fk_user_teams_match: time=0.056 calls=1
-Trigger for constraint fk_user_teams_captain: time=0.116 calls=1
-Trigger for constraint fk_user_teams_vice_captain: time=0.021 calls=1
-Execution Time: 0.722 ms
-=== W01 run 3 ===
-Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.161..0.161 rows=0.00 loops=1)
-  Buffers: shared hit=91
-  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.013..0.014 rows=1.00 loops=1)
-        Filter: (match_id = 207)
-        Rows Removed by Filter: 211
-        Buffers: shared hit=3
-Planning:
-  Buffers: shared hit=70
-Planning Time: 0.195 ms
-Trigger for constraint fk_user_teams_user: time=0.329 calls=1
+Planning Time: 0.177 ms
+Trigger for constraint fk_user_teams_user: time=0.476 calls=1
 Trigger for constraint fk_user_teams_match: time=0.055 calls=1
-Trigger for constraint fk_user_teams_captain: time=0.113 calls=1
-Trigger for constraint fk_user_teams_vice_captain: time=0.020 calls=1
-Execution Time: 0.693 ms
+Trigger for constraint fk_user_teams_captain: time=0.105 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.019 calls=1
+Execution Time: 1.368 ms
+=== W01 run 2 ===
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.139..0.139 rows=0.00 loops=1)
+  Buffers: shared hit=91
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.012..0.013 rows=1.00 loops=1)
+        Filter: (match_id = 207)
+        Rows Removed by Filter: 211
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.173 ms
+Trigger for constraint fk_user_teams_user: time=0.295 calls=1
+Trigger for constraint fk_user_teams_match: time=0.048 calls=1
+Trigger for constraint fk_user_teams_captain: time=0.101 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.018 calls=1
+Execution Time: 0.614 ms
+=== W01 run 3 ===
+Insert on user_teams  (cost=0.00..5.67 rows=0 width=0) (actual time=0.140..0.140 rows=0.00 loops=1)
+  Buffers: shared hit=91
+  ->  Seq Scan on matches m  (cost=0.00..5.67 rows=1 width=260) (actual time=0.011..0.012 rows=1.00 loops=1)
+        Filter: (match_id = 207)
+        Rows Removed by Filter: 211
+        Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=70
+Planning Time: 0.181 ms
+Trigger for constraint fk_user_teams_user: time=0.284 calls=1
+Trigger for constraint fk_user_teams_match: time=0.047 calls=1
+Trigger for constraint fk_user_teams_captain: time=0.101 calls=1
+Trigger for constraint fk_user_teams_vice_captain: time=0.017 calls=1
+Execution Time: 0.604 ms

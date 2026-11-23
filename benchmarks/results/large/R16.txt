@@ -1,54 +1,12 @@
 === R16 run 1 ===
-Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.189..0.190 rows=23.00 loops=1)
+Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.188..0.188 rows=23.00 loops=1)
   Sort Key: p.credits DESC
   Sort Method: quicksort  Memory: 26kB
   Buffers: shared hit=8
-  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.017..0.174 rows=23.00 loops=1)
+  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.017..0.172 rows=23.00 loops=1)
         Hash Cond: (p.team_id = t.team_id)
         Buffers: shared hit=5
-        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.007..0.161 rows=23.00 loops=1)
-              Filter: ((full_name)::text ~~* '%sharma%'::text)
-              Rows Removed by Filter: 427
-              Buffers: shared hit=4
-        ->  Hash  (cost=1.18..1.18 rows=18 width=7) (actual time=0.006..0.006 rows=18.00 loops=1)
-              Buckets: 1024  Batches: 1  Memory Usage: 9kB
-              Buffers: shared hit=1
-              ->  Seq Scan on teams t  (cost=0.00..1.18 rows=18 width=7) (actual time=0.002..0.003 rows=18.00 loops=1)
-                    Buffers: shared hit=1
-Planning:
-  Buffers: shared hit=207 read=1
-Planning Time: 0.456 ms
-Execution Time: 0.213 ms
-=== R16 run 2 ===
-Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.180..0.181 rows=23.00 loops=1)
-  Sort Key: p.credits DESC
-  Sort Method: quicksort  Memory: 26kB
-  Buffers: shared hit=8
-  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.017..0.165 rows=23.00 loops=1)
-        Hash Cond: (p.team_id = t.team_id)
-        Buffers: shared hit=5
-        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.007..0.153 rows=23.00 loops=1)
-              Filter: ((full_name)::text ~~* '%sharma%'::text)
-              Rows Removed by Filter: 427
-              Buffers: shared hit=4
-        ->  Hash  (cost=1.18..1.18 rows=18 width=7) (actual time=0.006..0.006 rows=18.00 loops=1)
-              Buckets: 1024  Batches: 1  Memory Usage: 9kB
-              Buffers: shared hit=1
-              ->  Seq Scan on teams t  (cost=0.00..1.18 rows=18 width=7) (actual time=0.002..0.003 rows=18.00 loops=1)
-                    Buffers: shared hit=1
-Planning:
-  Buffers: shared hit=208
-Planning Time: 0.382 ms
-Execution Time: 0.204 ms
-=== R16 run 3 ===
-Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.185..0.186 rows=23.00 loops=1)
-  Sort Key: p.credits DESC
-  Sort Method: quicksort  Memory: 26kB
-  Buffers: shared hit=8
-  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.018..0.170 rows=23.00 loops=1)
-        Hash Cond: (p.team_id = t.team_id)
-        Buffers: shared hit=5
-        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.007..0.156 rows=23.00 loops=1)
+        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.006..0.159 rows=23.00 loops=1)
               Filter: ((full_name)::text ~~* '%sharma%'::text)
               Rows Removed by Filter: 427
               Buffers: shared hit=4
@@ -58,6 +16,48 @@ Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.185..0.186 rows=23.00 
               ->  Seq Scan on teams t  (cost=0.00..1.18 rows=18 width=7) (actual time=0.002..0.003 rows=18.00 loops=1)
                     Buffers: shared hit=1
 Planning:
+  Buffers: shared hit=207 read=1
+Planning Time: 0.418 ms
+Execution Time: 0.211 ms
+=== R16 run 2 ===
+Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.174..0.175 rows=23.00 loops=1)
+  Sort Key: p.credits DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=8
+  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.017..0.159 rows=23.00 loops=1)
+        Hash Cond: (p.team_id = t.team_id)
+        Buffers: shared hit=5
+        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.006..0.146 rows=23.00 loops=1)
+              Filter: ((full_name)::text ~~* '%sharma%'::text)
+              Rows Removed by Filter: 427
+              Buffers: shared hit=4
+        ->  Hash  (cost=1.18..1.18 rows=18 width=7) (actual time=0.006..0.007 rows=18.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=1
+              ->  Seq Scan on teams t  (cost=0.00..1.18 rows=18 width=7) (actual time=0.002..0.003 rows=18.00 loops=1)
+                    Buffers: shared hit=1
+Planning:
   Buffers: shared hit=208
-Planning Time: 0.410 ms
-Execution Time: 0.208 ms
+Planning Time: 0.380 ms
+Execution Time: 0.199 ms
+=== R16 run 3 ===
+Sort  (cost=11.62..11.68 rows=23 width=28) (actual time=0.193..0.194 rows=23.00 loops=1)
+  Sort Key: p.credits DESC
+  Sort Method: quicksort  Memory: 26kB
+  Buffers: shared hit=8
+  ->  Hash Join  (cost=1.41..11.10 rows=23 width=28) (actual time=0.027..0.174 rows=23.00 loops=1)
+        Hash Cond: (p.team_id = t.team_id)
+        Buffers: shared hit=5
+        ->  Seq Scan on players p  (cost=0.00..9.62 rows=23 width=29) (actual time=0.008..0.153 rows=23.00 loops=1)
+              Filter: ((full_name)::text ~~* '%sharma%'::text)
+              Rows Removed by Filter: 427
+              Buffers: shared hit=4
+        ->  Hash  (cost=1.18..1.18 rows=18 width=7) (actual time=0.012..0.012 rows=18.00 loops=1)
+              Buckets: 1024  Batches: 1  Memory Usage: 9kB
+              Buffers: shared hit=1
+              ->  Seq Scan on teams t  (cost=0.00..1.18 rows=18 width=7) (actual time=0.005..0.007 rows=18.00 loops=1)
+                    Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=208
+Planning Time: 0.422 ms
+Execution Time: 0.237 ms
