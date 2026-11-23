@@ -1,59 +1,96 @@
 === W02 run 1 ===
-Insert on contest_entries  (cost=8.43..24.70 rows=0 width=0) (actual time=0.961..0.961 rows=0.00 loops=1)
+Insert on contest_entries  (cost=8.36..24.63 rows=0 width=0) (actual time=0.559..0.560 rows=0.00 loops=1)
   Conflict Resolution: NOTHING
   Conflict Arbiter Indexes: uq_contest_user_team
   Tuples Inserted: 1
   Conflicting Tuples: 0
-  Buffers: shared hit=43 read=11 dirtied=5
+  Buffers: shared hit=43 read=11 dirtied=4
   InitPlan 2
-    ->  Result  (cost=7.71..7.72 rows=1 width=4) (actual time=0.050..0.050 rows=1.00 loops=1)
+    ->  Result  (cost=7.64..7.65 rows=1 width=4) (actual time=0.227..0.227 rows=1.00 loops=1)
           Buffers: shared hit=15 read=2
           InitPlan 1
-            ->  Limit  (cost=0.42..7.71 rows=1 width=4) (actual time=0.049..0.049 rows=1.00 loops=1)
+            ->  Limit  (cost=0.42..7.64 rows=1 width=4) (actual time=0.226..0.226 rows=1.00 loops=1)
                   Buffers: shared hit=15 read=2
-                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..29532.01 rows=4051 width=4) (actual time=0.049..0.049 rows=1.00 loops=1)
+                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..30228.96 rows=4187 width=4) (actual time=0.226..0.226 rows=1.00 loops=1)
                         Filter: (match_id = 207)
                         Rows Removed by Filter: 568
                         Index Searches: 1
                         Buffers: shared hit=15 read=2
-  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.255..0.257 rows=1.00 loops=1)
+  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.382..0.384 rows=1.00 loops=1)
         Buffers: shared hit=20 read=4
-        ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=1 width=8) (actual time=0.012..0.013 rows=1.00 loops=1)
+        ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=1 width=8) (actual time=0.013..0.015 rows=1.00 loops=1)
               Index Cond: (match_id = 207)
               Filter: ((contest_type)::text = 'MEGA'::text)
               Rows Removed by Filter: 11
               Index Searches: 1
               Buffers: shared hit=2 read=1
-        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.192..0.193 rows=1.00 loops=1)
+        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.140..0.140 rows=1.00 loops=1)
               Index Cond: (user_team_id = (InitPlan 2).col1)
               Filter: (match_id = 207)
               Index Searches: 1
               Buffers: shared hit=3 read=1
 Planning:
   Buffers: shared hit=278 read=2
-Planning Time: 0.578 ms
-Trigger for constraint fk_entries_contest: time=0.109 calls=1
-Trigger for constraint fk_entries_user_team: time=0.055 calls=1
-Execution Time: 1.157 ms
+Planning Time: 0.592 ms
+Trigger for constraint fk_entries_contest: time=0.102 calls=1
+Trigger for constraint fk_entries_user_team: time=0.028 calls=1
+Execution Time: 0.716 ms
 === W02 run 2 ===
-Insert on contest_entries  (cost=8.43..24.70 rows=0 width=0) (actual time=0.162..0.163 rows=0.00 loops=1)
+Insert on contest_entries  (cost=8.36..24.63 rows=0 width=0) (actual time=0.186..0.186 rows=0.00 loops=1)
   Conflict Resolution: NOTHING
   Conflict Arbiter Indexes: uq_contest_user_team
   Tuples Inserted: 1
   Conflicting Tuples: 0
   Buffers: shared hit=50 dirtied=1
   InitPlan 2
-    ->  Result  (cost=7.71..7.72 rows=1 width=4) (actual time=0.042..0.043 rows=1.00 loops=1)
+    ->  Result  (cost=7.64..7.65 rows=1 width=4) (actual time=0.052..0.052 rows=1.00 loops=1)
           Buffers: shared hit=11
           InitPlan 1
-            ->  Limit  (cost=0.42..7.71 rows=1 width=4) (actual time=0.042..0.042 rows=1.00 loops=1)
+            ->  Limit  (cost=0.42..7.64 rows=1 width=4) (actual time=0.051..0.051 rows=1.00 loops=1)
                   Buffers: shared hit=11
-                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..29532.01 rows=4051 width=4) (actual time=0.041..0.042 rows=1.00 loops=1)
+                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..30228.96 rows=4187 width=4) (actual time=0.051..0.051 rows=1.00 loops=1)
                         Filter: (match_id = 207)
                         Rows Removed by Filter: 568
                         Index Searches: 1
                         Buffers: shared hit=11
-  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.059..0.060 rows=1.00 loops=1)
+  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.069..0.071 rows=1.00 loops=1)
+        Buffers: shared hit=18
+        ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=1 width=8) (actual time=0.009..0.010 rows=1.00 loops=1)
+              Index Cond: (match_id = 207)
+              Filter: ((contest_type)::text = 'MEGA'::text)
+              Rows Removed by Filter: 11
+              Index Searches: 1
+              Buffers: shared hit=3
+        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.007..0.007 rows=1.00 loops=1)
+              Index Cond: (user_team_id = (InitPlan 2).col1)
+              Filter: (match_id = 207)
+              Index Searches: 1
+              Buffers: shared hit=4
+Planning:
+  Buffers: shared hit=280
+Planning Time: 0.569 ms
+Trigger for constraint fk_entries_contest: time=0.095 calls=1
+Trigger for constraint fk_entries_user_team: time=0.027 calls=1
+Execution Time: 0.335 ms
+=== W02 run 3 ===
+Insert on contest_entries  (cost=8.36..24.63 rows=0 width=0) (actual time=0.181..0.181 rows=0.00 loops=1)
+  Conflict Resolution: NOTHING
+  Conflict Arbiter Indexes: uq_contest_user_team
+  Tuples Inserted: 1
+  Conflicting Tuples: 0
+  Buffers: shared hit=50 dirtied=1
+  InitPlan 2
+    ->  Result  (cost=7.64..7.65 rows=1 width=4) (actual time=0.050..0.050 rows=1.00 loops=1)
+          Buffers: shared hit=11
+          InitPlan 1
+            ->  Limit  (cost=0.42..7.64 rows=1 width=4) (actual time=0.049..0.049 rows=1.00 loops=1)
+                  Buffers: shared hit=11
+                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..30228.96 rows=4187 width=4) (actual time=0.049..0.049 rows=1.00 loops=1)
+                        Filter: (match_id = 207)
+                        Rows Removed by Filter: 568
+                        Index Searches: 1
+                        Buffers: shared hit=11
+  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.066..0.067 rows=1.00 loops=1)
         Buffers: shared hit=18
         ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=1 width=8) (actual time=0.008..0.009 rows=1.00 loops=1)
               Index Cond: (match_id = 207)
@@ -61,51 +98,14 @@ Insert on contest_entries  (cost=8.43..24.70 rows=0 width=0) (actual time=0.162.
               Rows Removed by Filter: 11
               Index Searches: 1
               Buffers: shared hit=3
-        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.008..0.008 rows=1.00 loops=1)
+        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.006..0.007 rows=1.00 loops=1)
               Index Cond: (user_team_id = (InitPlan 2).col1)
               Filter: (match_id = 207)
               Index Searches: 1
               Buffers: shared hit=4
 Planning:
   Buffers: shared hit=280
-Planning Time: 0.519 ms
-Trigger for constraint fk_entries_contest: time=0.086 calls=1
-Trigger for constraint fk_entries_user_team: time=0.049 calls=1
-Execution Time: 0.321 ms
-=== W02 run 3 ===
-Insert on contest_entries  (cost=8.43..24.70 rows=0 width=0) (actual time=0.162..0.162 rows=0.00 loops=1)
-  Conflict Resolution: NOTHING
-  Conflict Arbiter Indexes: uq_contest_user_team
-  Tuples Inserted: 1
-  Conflicting Tuples: 0
-  Buffers: shared hit=50 dirtied=1
-  InitPlan 2
-    ->  Result  (cost=7.71..7.72 rows=1 width=4) (actual time=0.042..0.042 rows=1.00 loops=1)
-          Buffers: shared hit=11
-          InitPlan 1
-            ->  Limit  (cost=0.42..7.71 rows=1 width=4) (actual time=0.041..0.041 rows=1.00 loops=1)
-                  Buffers: shared hit=11
-                  ->  Index Scan Backward using user_teams_pkey on user_teams  (cost=0.42..29532.01 rows=4051 width=4) (actual time=0.041..0.041 rows=1.00 loops=1)
-                        Filter: (match_id = 207)
-                        Rows Removed by Filter: 568
-                        Index Searches: 1
-                        Buffers: shared hit=11
-  ->  Nested Loop  (cost=0.71..16.98 rows=1 width=40) (actual time=0.058..0.059 rows=1.00 loops=1)
-        Buffers: shared hit=18
-        ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=1 width=8) (actual time=0.007..0.008 rows=1.00 loops=1)
-              Index Cond: (match_id = 207)
-              Filter: ((contest_type)::text = 'MEGA'::text)
-              Rows Removed by Filter: 11
-              Index Searches: 1
-              Buffers: shared hit=3
-        ->  Index Scan using idx_user_teams_cover on user_teams ut  (cost=0.42..8.45 rows=1 width=8) (actual time=0.008..0.008 rows=1.00 loops=1)
-              Index Cond: (user_team_id = (InitPlan 2).col1)
-              Filter: (match_id = 207)
-              Index Searches: 1
-              Buffers: shared hit=4
-Planning:
-  Buffers: shared hit=280
-Planning Time: 0.512 ms
-Trigger for constraint fk_entries_contest: time=0.092 calls=1
-Trigger for constraint fk_entries_user_team: time=0.045 calls=1
-Execution Time: 0.325 ms
+Planning Time: 0.538 ms
+Trigger for constraint fk_entries_contest: time=0.090 calls=1
+Trigger for constraint fk_entries_user_team: time=0.025 calls=1
+Execution Time: 0.322 ms

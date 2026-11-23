@@ -424,7 +424,7 @@ FROM (SELECT ut2.user_team_id,
       LEFT JOIN player_match_stats pms ON pms.match_id = ut2.match_id AND pms.player_id = utp.player_id
       WHERE ut2.match_id = 183
       GROUP BY ut2.user_team_id) s
-WHERE s.user_team_id = ut.user_team_id;
+WHERE s.user_team_id = ut.user_team_id AND ut.match_id = 183;
 
 -- @W05
 -- Payouts: approve all withdrawals pending for more than 24 hours
@@ -435,3 +435,4 @@ WHERE txn_type = 'WITHDRAWAL' AND status = 'PENDING'
 
 -- @END
 ROLLBACK;
+

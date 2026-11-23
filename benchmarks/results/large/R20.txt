@@ -1,63 +1,63 @@
 === R20 run 1 ===
-WindowAgg  (cost=5214.98..6856.56 rows=43426 width=68) (actual time=8.342..12.017 rows=28.00 loops=1)
+WindowAgg  (cost=5257.74..6911.45 rows=43747 width=68) (actual time=8.035..11.806 rows=28.00 loops=1)
   Window: w1 AS (ORDER BY ((wallet_transactions.created_at)::date))
   Storage: Memory  Maximum Storage: 17kB
-  Buffers: shared hit=4 read=181
-  ->  GroupAggregate  (cost=5214.94..6205.17 rows=43426 width=36) (actual time=8.187..11.993 rows=28.00 loops=1)
+  Buffers: shared hit=8 read=284
+  ->  GroupAggregate  (cost=5257.70..6255.24 rows=43747 width=36) (actual time=7.883..11.783 rows=28.00 loops=1)
         Group Key: ((wallet_transactions.created_at)::date)
-        Buffers: shared hit=4 read=181
-        ->  Sort  (cost=5214.94..5327.89 rows=45178 width=9) (actual time=8.029..9.278 rows=44949.00 loops=1)
+        Buffers: shared hit=8 read=284
+        ->  Sort  (cost=5257.70..5371.48 rows=45512 width=9) (actual time=7.730..9.007 rows=44949.00 loops=1)
               Sort Key: ((wallet_transactions.created_at)::date)
               Sort Method: quicksort  Memory: 2941kB
-              Buffers: shared hit=4 read=181
-              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1721.93 rows=45178 width=9) (actual time=0.492..5.831 rows=44949.00 loops=1)
+              Buffers: shared hit=8 read=284
+              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1736.45 rows=45512 width=9) (actual time=0.017..5.579 rows=44949.00 loops=1)
                     Index Cond: ((created_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (created_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
-                    Heap Fetches: 285
+                    Heap Fetches: 6673
                     Index Searches: 1
-                    Buffers: shared hit=1 read=181
+                    Buffers: shared hit=5 read=284
 Planning:
   Buffers: shared hit=255 read=5
-Planning Time: 0.727 ms
-Execution Time: 12.065 ms
+Planning Time: 0.726 ms
+Execution Time: 11.848 ms
 === R20 run 2 ===
-WindowAgg  (cost=5214.98..6856.56 rows=43426 width=68) (actual time=6.704..10.193 rows=28.00 loops=1)
+WindowAgg  (cost=5257.74..6911.45 rows=43747 width=68) (actual time=7.596..11.386 rows=28.00 loops=1)
   Window: w1 AS (ORDER BY ((wallet_transactions.created_at)::date))
   Storage: Memory  Maximum Storage: 17kB
-  Buffers: shared hit=185
-  ->  GroupAggregate  (cost=5214.94..6205.17 rows=43426 width=36) (actual time=6.567..10.170 rows=28.00 loops=1)
+  Buffers: shared hit=292
+  ->  GroupAggregate  (cost=5257.70..6255.24 rows=43747 width=36) (actual time=7.444..11.362 rows=28.00 loops=1)
         Group Key: ((wallet_transactions.created_at)::date)
-        Buffers: shared hit=185
-        ->  Sort  (cost=5214.94..5327.89 rows=45178 width=9) (actual time=6.428..7.600 rows=44949.00 loops=1)
+        Buffers: shared hit=292
+        ->  Sort  (cost=5257.70..5371.48 rows=45512 width=9) (actual time=7.291..8.558 rows=44949.00 loops=1)
               Sort Key: ((wallet_transactions.created_at)::date)
               Sort Method: quicksort  Memory: 2941kB
-              Buffers: shared hit=185
-              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1721.93 rows=45178 width=9) (actual time=0.011..4.318 rows=44949.00 loops=1)
+              Buffers: shared hit=292
+              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1736.45 rows=45512 width=9) (actual time=0.012..5.108 rows=44949.00 loops=1)
                     Index Cond: ((created_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (created_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
-                    Heap Fetches: 285
+                    Heap Fetches: 6673
                     Index Searches: 1
-                    Buffers: shared hit=182
+                    Buffers: shared hit=289
 Planning:
   Buffers: shared hit=260
-Planning Time: 0.621 ms
-Execution Time: 10.226 ms
+Planning Time: 0.660 ms
+Execution Time: 11.424 ms
 === R20 run 3 ===
-WindowAgg  (cost=5214.98..6856.56 rows=43426 width=68) (actual time=6.786..10.215 rows=28.00 loops=1)
+WindowAgg  (cost=5257.74..6911.45 rows=43747 width=68) (actual time=6.957..10.421 rows=28.00 loops=1)
   Window: w1 AS (ORDER BY ((wallet_transactions.created_at)::date))
   Storage: Memory  Maximum Storage: 17kB
-  Buffers: shared hit=185
-  ->  GroupAggregate  (cost=5214.94..6205.17 rows=43426 width=36) (actual time=6.646..10.193 rows=28.00 loops=1)
+  Buffers: shared hit=292
+  ->  GroupAggregate  (cost=5257.70..6255.24 rows=43747 width=36) (actual time=6.818..10.400 rows=28.00 loops=1)
         Group Key: ((wallet_transactions.created_at)::date)
-        Buffers: shared hit=185
-        ->  Sort  (cost=5214.94..5327.89 rows=45178 width=9) (actual time=6.505..7.661 rows=44949.00 loops=1)
+        Buffers: shared hit=292
+        ->  Sort  (cost=5257.70..5371.48 rows=45512 width=9) (actual time=6.676..7.840 rows=44949.00 loops=1)
               Sort Key: ((wallet_transactions.created_at)::date)
               Sort Method: quicksort  Memory: 2941kB
-              Buffers: shared hit=185
-              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1721.93 rows=45178 width=9) (actual time=0.013..4.454 rows=44949.00 loops=1)
+              Buffers: shared hit=292
+              ->  Index Only Scan using idx_successful_deposits on wallet_transactions  (cost=0.42..1736.45 rows=45512 width=9) (actual time=0.011..4.709 rows=44949.00 loops=1)
                     Index Cond: ((created_at >= '2026-06-01 00:00:00+05:30'::timestamp with time zone) AND (created_at < '2026-07-01 00:00:00+05:30'::timestamp with time zone))
-                    Heap Fetches: 285
+                    Heap Fetches: 6673
                     Index Searches: 1
-                    Buffers: shared hit=182
+                    Buffers: shared hit=289
 Planning:
   Buffers: shared hit=260
-Planning Time: 0.632 ms
-Execution Time: 10.250 ms
+Planning Time: 0.618 ms
+Execution Time: 10.459 ms

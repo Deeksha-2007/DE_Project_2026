@@ -1,54 +1,54 @@
 === R22 run 1 ===
-Limit  (cost=1525.10..1527.17 rows=25 width=36) (actual time=4.263..4.267 rows=25.00 loops=1)
-  Buffers: shared hit=1433 read=232 dirtied=64
+Limit  (cost=1527.45..1529.52 rows=25 width=36) (actual time=6.367..6.372 rows=25.00 loops=1)
+  Buffers: shared hit=6003 read=299 dirtied=70
   InitPlan 1
-    ->  Limit  (cost=1524.64..1524.67 rows=1 width=12) (actual time=4.252..4.253 rows=1.00 loops=1)
-          Buffers: shared hit=1430 read=231 dirtied=64
-          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48097.72 rows=1577740 width=12) (actual time=0.032..3.252 rows=50000.00 loops=1)
-                Heap Fetches: 3547
+    ->  Limit  (cost=1526.99..1527.02 rows=1 width=12) (actual time=6.354..6.354 rows=1.00 loops=1)
+          Buffers: shared hit=6000 read=298 dirtied=70
+          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48527.90 rows=1589402 width=12) (actual time=0.039..5.038 rows=50000.00 loops=1)
+                Heap Fetches: 18532
                 Index Searches: 1
-                Buffers: shared hit=1430 read=231 dirtied=64
-  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43518.23 rows=525913 width=36) (actual time=4.263..4.265 rows=25.00 loops=1)
+                Buffers: shared hit=6000 read=298 dirtied=70
+  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43791.83 rows=529801 width=36) (actual time=6.367..6.370 rows=25.00 loops=1)
         Index Cond: (ROW(created_at, txn_id) < ROW((InitPlan 1).col1, (InitPlan 1).col2))
         Index Searches: 1
-        Buffers: shared hit=1433 read=232 dirtied=64
+        Buffers: shared hit=6003 read=299 dirtied=70
 Planning:
   Buffers: shared hit=210
-Planning Time: 0.451 ms
-Execution Time: 4.292 ms
+Planning Time: 0.590 ms
+Execution Time: 6.403 ms
 === R22 run 2 ===
-Limit  (cost=1525.10..1527.17 rows=25 width=36) (actual time=3.495..3.498 rows=25.00 loops=1)
-  Buffers: shared hit=451
+Limit  (cost=1527.45..1529.52 rows=25 width=36) (actual time=5.005..5.010 rows=25.00 loops=1)
+  Buffers: shared hit=3662
   InitPlan 1
-    ->  Limit  (cost=1524.64..1524.67 rows=1 width=12) (actual time=3.487..3.487 rows=1.00 loops=1)
-          Buffers: shared hit=447
-          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48097.72 rows=1577740 width=12) (actual time=0.033..2.482 rows=50000.00 loops=1)
-                Heap Fetches: 2170
+    ->  Limit  (cost=1526.99..1527.02 rows=1 width=12) (actual time=4.996..4.996 rows=1.00 loops=1)
+          Buffers: shared hit=3658
+          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48527.90 rows=1589402 width=12) (actual time=0.037..3.799 rows=50000.00 loops=1)
+                Heap Fetches: 16410
                 Index Searches: 1
-                Buffers: shared hit=447
-  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43518.23 rows=525913 width=36) (actual time=3.494..3.497 rows=25.00 loops=1)
+                Buffers: shared hit=3658
+  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43791.83 rows=529801 width=36) (actual time=5.005..5.007 rows=25.00 loops=1)
         Index Cond: (ROW(created_at, txn_id) < ROW((InitPlan 1).col1, (InitPlan 1).col2))
         Index Searches: 1
-        Buffers: shared hit=451
+        Buffers: shared hit=3662
 Planning:
   Buffers: shared hit=210
-Planning Time: 0.465 ms
-Execution Time: 3.523 ms
+Planning Time: 0.537 ms
+Execution Time: 5.040 ms
 === R22 run 3 ===
-Limit  (cost=1525.10..1527.17 rows=25 width=36) (actual time=3.596..3.599 rows=25.00 loops=1)
-  Buffers: shared hit=451
+Limit  (cost=1527.45..1529.52 rows=25 width=36) (actual time=5.061..5.065 rows=25.00 loops=1)
+  Buffers: shared hit=3662
   InitPlan 1
-    ->  Limit  (cost=1524.64..1524.67 rows=1 width=12) (actual time=3.588..3.588 rows=1.00 loops=1)
-          Buffers: shared hit=447
-          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48097.72 rows=1577740 width=12) (actual time=0.042..2.576 rows=50000.00 loops=1)
-                Heap Fetches: 2170
+    ->  Limit  (cost=1526.99..1527.02 rows=1 width=12) (actual time=5.051..5.051 rows=1.00 loops=1)
+          Buffers: shared hit=3658
+          ->  Index Only Scan using idx_wallet_created_txn on wallet_transactions  (cost=0.43..48527.90 rows=1589402 width=12) (actual time=0.038..3.849 rows=50000.00 loops=1)
+                Heap Fetches: 16410
                 Index Searches: 1
-                Buffers: shared hit=447
-  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43518.23 rows=525913 width=36) (actual time=3.595..3.597 rows=25.00 loops=1)
+                Buffers: shared hit=3658
+  ->  Index Scan using idx_wallet_created_txn on wallet_transactions w  (cost=0.43..43791.83 rows=529801 width=36) (actual time=5.060..5.063 rows=25.00 loops=1)
         Index Cond: (ROW(created_at, txn_id) < ROW((InitPlan 1).col1, (InitPlan 1).col2))
         Index Searches: 1
-        Buffers: shared hit=451
+        Buffers: shared hit=3662
 Planning:
   Buffers: shared hit=210
-Planning Time: 0.487 ms
-Execution Time: 3.625 ms
+Planning Time: 0.550 ms
+Execution Time: 5.094 ms

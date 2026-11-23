@@ -1,65 +1,40 @@
 === R04 run 1 ===
-Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.766..0.766 rows=10.00 loops=1)
+Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.346..0.346 rows=10.00 loops=1)
   Sort Key: c.prize_pool DESC
   Sort Method: quicksort  Memory: 25kB
-  Buffers: shared hit=1237 read=5 dirtied=1
-  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.755..0.756 rows=10.00 loops=1)
+  Buffers: shared hit=1223 read=19 dirtied=1 written=19
+  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.337..0.338 rows=10.00 loops=1)
         Group Key: c.contest_id
         Batches: 1  Memory Usage: 32kB
-        Buffers: shared hit=1234 read=5 dirtied=1
-        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.119..0.674 rows=1392.00 loops=1)
-              Buffers: shared hit=1234 read=5 dirtied=1
-              ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=10 width=35) (actual time=0.006..0.008 rows=10.00 loops=1)
-                    Index Cond: (match_id = 207)
-                    Filter: ((contest_type)::text <> 'PRIVATE'::text)
-                    Rows Removed by Filter: 2
-                    Index Searches: 1
-                    Buffers: shared hit=3
-              ->  Index Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..200.40 rows=150 width=8) (actual time=0.015..0.060 rows=139.20 loops=10)
-                    Index Cond: (contest_id = c.contest_id)
-                    Index Searches: 10
-                    Buffers: shared hit=1231 read=5 dirtied=1
-Planning:
-  Buffers: shared hit=263 read=5
-Planning Time: 1.164 ms
-Execution Time: 0.802 ms
-=== R04 run 2 ===
-Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.305..0.306 rows=10.00 loops=1)
-  Sort Key: c.prize_pool DESC
-  Sort Method: quicksort  Memory: 25kB
-  Buffers: shared hit=1240
-  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.296..0.297 rows=10.00 loops=1)
-        Group Key: c.contest_id
-        Batches: 1  Memory Usage: 32kB
-        Buffers: shared hit=1237
-        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.013..0.217 rows=1392.00 loops=1)
-              Buffers: shared hit=1237
+        Buffers: shared hit=1220 read=19 dirtied=1 written=19
+        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.020..0.267 rows=1392.00 loops=1)
+              Buffers: shared hit=1220 read=19 dirtied=1 written=19
               ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=10 width=35) (actual time=0.005..0.007 rows=10.00 loops=1)
                     Index Cond: (match_id = 207)
                     Filter: ((contest_type)::text <> 'PRIVATE'::text)
                     Rows Removed by Filter: 2
                     Index Searches: 1
                     Buffers: shared hit=3
-              ->  Index Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..200.40 rows=150 width=8) (actual time=0.001..0.015 rows=139.20 loops=10)
+              ->  Index Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..200.40 rows=150 width=8) (actual time=0.002..0.020 rows=139.20 loops=10)
                     Index Cond: (contest_id = c.contest_id)
                     Index Searches: 10
-                    Buffers: shared hit=1234
+                    Buffers: shared hit=1217 read=19 dirtied=1 written=19
 Planning:
-  Buffers: shared hit=268
-Planning Time: 0.496 ms
-Execution Time: 0.338 ms
-=== R04 run 3 ===
-Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.291..0.291 rows=10.00 loops=1)
+  Buffers: shared hit=253 read=15 written=15
+Planning Time: 0.564 ms
+Execution Time: 0.376 ms
+=== R04 run 2 ===
+Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.275..0.276 rows=10.00 loops=1)
   Sort Key: c.prize_pool DESC
   Sort Method: quicksort  Memory: 25kB
   Buffers: shared hit=1240
-  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.282..0.283 rows=10.00 loops=1)
+  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.267..0.268 rows=10.00 loops=1)
         Group Key: c.contest_id
         Batches: 1  Memory Usage: 32kB
         Buffers: shared hit=1237
-        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.013..0.209 rows=1392.00 loops=1)
+        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.011..0.200 rows=1392.00 loops=1)
               Buffers: shared hit=1237
-              ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=10 width=35) (actual time=0.006..0.007 rows=10.00 loops=1)
+              ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=10 width=35) (actual time=0.005..0.006 rows=10.00 loops=1)
                     Index Cond: (match_id = 207)
                     Filter: ((contest_type)::text <> 'PRIVATE'::text)
                     Rows Removed by Filter: 2
@@ -71,5 +46,30 @@ Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.291..0.291 rows=10
                     Buffers: shared hit=1234
 Planning:
   Buffers: shared hit=268
-Planning Time: 0.474 ms
-Execution Time: 0.323 ms
+Planning Time: 0.431 ms
+Execution Time: 0.304 ms
+=== R04 run 3 ===
+Sort  (cost=2032.62..2032.64 rows=10 width=43) (actual time=0.272..0.273 rows=10.00 loops=1)
+  Sort Key: c.prize_pool DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=1240
+  ->  HashAggregate  (cost=2032.33..2032.45 rows=10 width=43) (actual time=0.264..0.265 rows=10.00 loops=1)
+        Group Key: c.contest_id
+        Batches: 1  Memory Usage: 32kB
+        Buffers: shared hit=1237
+        ->  Nested Loop Left Join  (cost=0.70..2027.51 rows=964 width=39) (actual time=0.010..0.196 rows=1392.00 loops=1)
+              Buffers: shared hit=1237
+              ->  Index Scan using idx_contests_match on contests c  (cost=0.28..8.52 rows=10 width=35) (actual time=0.005..0.006 rows=10.00 loops=1)
+                    Index Cond: (match_id = 207)
+                    Filter: ((contest_type)::text <> 'PRIVATE'::text)
+                    Rows Removed by Filter: 2
+                    Index Searches: 1
+                    Buffers: shared hit=3
+              ->  Index Scan using uq_contest_user_team on contest_entries ce  (cost=0.42..200.40 rows=150 width=8) (actual time=0.001..0.014 rows=139.20 loops=10)
+                    Index Cond: (contest_id = c.contest_id)
+                    Index Searches: 10
+                    Buffers: shared hit=1234
+Planning:
+  Buffers: shared hit=268
+Planning Time: 0.414 ms
+Execution Time: 0.302 ms
