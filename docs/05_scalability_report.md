@@ -41,13 +41,13 @@ Benchmark methodology:
 - Raw plans saved in `benchmarks/results/large/`
 - Growth ratio = Large Dataset avg_ms ÷ Optimized Seed avg_ms
 
-Performance targets:
+Performance targets (per README):
 
-| Category | Target |
-|----------|--------|
-| Real-time / match-day (R01–R10, W01–W03) | < 5 ms |
-| Interactive tools (R11, R16–R18, R21, R23–R25, W04–W05) | < 250 ms |
-| Reports / analytics (R12–R15, R19–R20, R22) | < 5,000 ms |
+| Category | Queries | Target |
+|----------|---------|--------|
+| Real-time / match-day | R01–R05, R07–R09, R23, W01–W03 | < 5 ms |
+| Interactive tools | R06, R10, R13, R16, R22, R25, W04–W05 | < 250 ms |
+| Reports / analytics | R11, R12, R14, R15, R17–R21, R24 | < 5,000 ms |
 
 ### Full Benchmark Table
 
@@ -58,25 +58,25 @@ Performance targets:
 | R03 | My teams: user 1006 for match 130 | 0.116 | 0.037 | 0.32× | < 5 | ✅ PASS |
 | R04 | Contest list for match 207: spots left | 0.206 | 0.322 | 1.56× | < 5 | ✅ PASS |
 | R05 | Leaderboard: contest 2185 ranked by points | 0.897 | 6.355 | 7.08× | < 5 | ❌ FAIL |
-| R06 | Fair play: rule-breaking teams for match 183 | 5.156 | 47.210 | 9.16× | < 5 | ❌ FAIL |
+| R06 | Fair play: rule-breaking teams for match 183 | 5.156 | 47.210 | 9.16× | < 250 | ✅ PASS |
 | R07 | Team preview: player points for user 1006, match 130 | 0.153 | 0.033 | 0.22× | < 5 | ✅ PASS |
 | R08 | Match insights: most-picked captains for match 207 | 0.598 | 4.447 | 7.44× | < 5 | ✅ PASS |
 | R09 | Wallet: user 1006's transactions with running balance | 0.127 | 0.048 | 0.38× | < 5 | ✅ PASS |
-| R10 | Payouts: withdrawals pending > 24 hours | 0.063 | 0.437 | 6.94× | < 5 | ✅ PASS |
-| R11 | Compliance: banned-state users in paid contests 2026 | 19.450 | 83.247 | 4.28× | < 250 | ✅ PASS |
+| R10 | Payouts: withdrawals pending > 24 hours | 0.063 | 0.437 | 6.94× | < 250 | ✅ PASS |
+| R11 | Compliance: banned-state users in paid contests 2026 | 19.450 | 83.247 | 4.28× | < 5,000 | ✅ PASS |
 | R12 | Stats hub: top players by avg fantasy points (IPL 2026) | 3.683 | 1.033 | 0.28× | < 5,000 | ✅ PASS |
-| R13 | Finance audit: paid entries with no wallet debit | 31.497 | 53.253 | 1.69× | < 5,000 | ✅ PASS |
+| R13 | Finance audit: paid entries with no wallet debit | 31.497 | 53.253 | 1.69× | < 250 | ✅ PASS |
 | R14 | Analytics: average fill rate per contest type | 27.770 | 73.174 | 2.63× | < 5,000 | ✅ PASS |
 | R15 | Leaderboards: top 20 users by winnings in 2026 | 44.792 | 144.371 | 3.22× | < 5,000 | ✅ PASS |
 | R16 | Player search (ILIKE '%sharma%') | 0.373 | 0.216 | 0.58× | < 250 | ✅ PASS |
-| R17 | Fair play: users with > 1 team in same contest | 26.243 | 177.474 | 6.76× | < 250 | ✅ PASS |
-| R18 | Tax compliance: unverified KYC users winning > ₹1,000 | 10.007 | 30.393 | 3.04× | < 250 | ✅ PASS |
+| R17 | Fair play: users with > 1 team in same contest | 26.243 | 177.474 | 6.76× | < 5,000 | ✅ PASS |
+| R18 | Tax compliance: unverified KYC users winning > ₹1,000 | 10.007 | 30.393 | 3.04× | < 5,000 | ✅ PASS |
 | R19 | Selection report: IPL player pick counts (all time) | 39.702 | 297.258 | 7.49× | < 5,000 | ✅ PASS |
 | R20 | Finance: successful deposits per day + running total | 0.800 | 10.401 | 13.00× | < 5,000 | ✅ PASS |
-| R21 | Engagement: H2H win rate (≥ 3 contests) | 10.339 | 28.389 | 2.75× | < 250 | ✅ PASS |
-| R22 | Support console: wallet transactions page 2001 | 4.936 | 4.859 | 0.98× | < 5,000 | ✅ PASS |
+| R21 | Engagement: H2H win rate (≥ 3 contests) | 10.339 | 28.389 | 2.75× | < 5,000 | ✅ PASS |
+| R22 | Support console: wallet transactions page 2001 | 4.936 | 4.859 | 0.98× | < 250 | ✅ PASS |
 | R23 | Login with mobile number | 0.047 | 0.188 | 4.00× | < 5 | ✅ PASS |
-| R24 | Player form: last 5 scores for CSK players | 0.931 | 0.580 | 0.62× | < 5 | ✅ PASS |
+| R24 | Player form: last 5 scores for CSK players | 0.931 | 0.580 | 0.62× | < 5,000 | ✅ PASS |
 | R25 | Refund audit: paid entries in abandoned matches not refunded | 2.251 | 22.974 | 10.20× | < 250 | ✅ PASS |
 | W01 | Create team: user 1006 saves team T9 for match 207 | 0.955 | 0.862 | 0.90× | < 5 | ✅ PASS |
 | W02 | Join contest: user 1006's team joins mega contest | 0.535 | 0.583 | 1.09× | < 5 | ✅ PASS |
@@ -84,9 +84,9 @@ Performance targets:
 | W04 | Points engine: recompute total points for match 183 | 12.325 | 186.946 | 15.17× | < 250 | ✅ PASS |
 | W05 | Payouts: approve all pending withdrawals > 24 hours | 1.729 | 12.215 | 7.07× | < 250 | ✅ PASS |
 
-**Queries failing their performance target: R02, R05, R06**
+**Queries failing their performance target: R02, R05**
 
-> **Note on R02 and R05 failure classification:** R02 (13.3 ms) and R05 (6.4 ms) exceed the 5 ms target on the large dataset. R06 (47.2 ms) also exceeds 5 ms. These are real-time/match-day queries. Their warm-cache large-dataset times are measured; the results have not been adjusted. R06 exceeded 5 ms even on the optimized seed (5.156 ms).
+> **Note on R02 and R05 failures:** R02 (13.3 ms) and R05 (6.4 ms) exceed the 5 ms real-time target on the large dataset. R06 (47.2 ms) is classified as an **Interactive** query (< 250 ms target per README) and **passes** its target. All large-dataset times are measured warm-cache values; no results were adjusted.
 
 ---
 
@@ -158,19 +158,32 @@ The indexes created in Phase 4 (`sql/05_indexes.sql`) have a significant positiv
 
 **Bottleneck:** The leaderboard query joins `contest_entries` → `user_teams` → `users` for all 1,101 entries in contest 2185. The covering index `idx_user_teams_cover` is used, but reports `Heap Fetches: 1101` — meaning the visibility map has not marked all pages as all-visible, forcing heap fetches for each row. This is a Heap Fetches inflation issue, not a missing index.
 
-**Root cause:** With 799,462 user_teams rows, the `idx_user_teams_cover` index covers (user_team_id) with INCLUDE (user_id, team_label, total_points). On cold runs, the index pages for 800K user teams occupy far more pages than the buffer cache can hold warm, causing 548 buffer reads on run 1. After run 1, the pages warm up and runs 2 and 3 show 4.98 ms and 4.91 ms — marginally under 5 ms.
+**Benchmark methodology note:** The benchmark script runs the query 3 consecutive times and reports the average. All 3 runs are measured and included in the average — none are discarded as warm-up. The individual execution times recorded in `benchmarks/results/large/R05.txt` are:
 
-**Analysis:** R05's average (6.355 ms) is pulled above 5 ms by the cold first run (9.177 ms). The warm-cache runs 2 and 3 (4.981 ms, 4.906 ms) are within the 5 ms target. This indicates the query is at the threshold of acceptability on the large dataset. Running `VACUUM (FREEZE) user_teams` to fully populate the visibility map would eliminate heap fetches entirely and likely bring even cold runs within 5 ms.
+| Run | Execution Time |
+|:---:|---------------:|
+| 1 | 9.177 ms |
+| 2 | 4.981 ms |
+| 3 | 4.906 ms |
+| **Average** | **6.355 ms** |
 
-**Honest assessment:** R05 fails the 5 ms target when the buffer cache is not fully warm. The existing covering index is correct. A `VACUUM FREEZE` on `user_teams` and periodic `CLUSTER` on `idx_user_teams_cover` would bring performance within target. These are operational improvements not yet applied.
+Run 1 reflects a partially cold buffer cache; runs 2 and 3 benefit from pages loaded during run 1. All three are valid measured results. The 3-run average of 6.355 ms is the reported figure and correctly exceeds the 5 ms target.
+
+**Root cause:** With 799,462 user_teams rows, the `idx_user_teams_cover` index covers (user_team_id) with INCLUDE (user_id, team_label, total_points). On run 1, the index pages for 800K user teams occupy far more pages than the buffer cache holds warm, causing 548 buffer reads and 1,101 heap fetches. After run 1, pages warm up and runs 2 and 3 land just under 5 ms.
+
+**Analysis:** R05's average (6.355 ms) is pulled above 5 ms by run 1 (9.177 ms). Runs 2 and 3 (4.981 ms, 4.906 ms) are within the 5 ms target. This indicates the query is at the threshold of acceptability on the large dataset. Running `VACUUM (FREEZE) user_teams` to fully populate the visibility map would eliminate heap fetches entirely and likely bring even cold runs within 5 ms.
+
+**Honest assessment:** R05 fails the 5 ms target on the basis of its 3-run average, driven by the first run against a partially cold buffer cache. The existing covering index is correct. A `VACUUM FREEZE` on `user_teams` and periodic `CLUSTER` on `idx_user_teams_cover` would bring performance within target. These are operational improvements not yet applied.
 
 ---
 
-### R06 — Fair Play Rule Check for Match 183 (47.2 ms, target < 5 ms)
+### R06 — Fair Play Rule Check for Match 183 (47.2 ms, interactive target < 250 ms)
 
-**Bottleneck:** R06 requires three separate aggregations over all teams in match 183 (player counts, credit totals, side counts). At large scale, match 183 has significantly more user teams. The query uses a Bitmap Heap Scan → nested join with `user_team_players`, scaling with the number of teams in that match.
+**Classification:** R06 is an **Interactive** query (target < 250 ms per README). At 47.210 ms on the large dataset, R06 **passes** its performance target with significant headroom.
 
-**Analysis:** R06 already exceeded 5 ms on the optimized seed (5.156 ms) and is significantly above target on the large dataset (47.2 ms). The growth ratio of 9.16× is proportional to the increase in teams for match 183. A materialized summary table or a background job validating teams at creation time (rather than on-demand) would eliminate this real-time bottleneck.
+**Bottleneck observed:** R06 requires three separate aggregations over all teams in match 183 (player counts, credit totals, side counts). At large scale, match 183 has significantly more user teams. The query uses a Bitmap Heap Scan → nested join with `user_team_players`, scaling with the number of teams in that match. The growth ratio of 9.16× (from 5.156 ms on the optimized seed to 47.210 ms on the large dataset) is proportional to the increase in teams for that match.
+
+**Optimization opportunity (not a failure):** While R06 comfortably passes the 250 ms interactive target, its high growth ratio (9.16×) is worth noting. If the platform scales to 100× the current dataset, R06 could approach or exceed the interactive target. A materialized summary table, or a background validation job that checks rule compliance at team-creation time rather than on-demand, would eliminate this scaling risk proactively.
 
 ---
 
@@ -414,7 +427,7 @@ At scale, query plans change as table statistics evolve. Enabling `pg_stat_state
 
 ### Current Scalability Performance
 
-The database performs well on the large dataset (1,324 MB, 20× user growth) for the majority of queries. Twenty-seven of thirty queries pass their performance targets. The optimized indexes from Phase 4 — particularly partial indexes, covering indexes, and composite indexes — remain effective at large scale.
+The database performs well on the large dataset (1,324 MB, 20× user growth) for the majority of queries. Twenty-eight of thirty queries pass their performance targets. The optimized indexes from Phase 4 — particularly partial indexes, covering indexes, and composite indexes — remain effective at large scale.
 
 ### Successful Optimizations
 
@@ -430,9 +443,8 @@ The database performs well on the large dataset (1,324 MB, 20× user growth) for
 |-------|-------------------:|:-----------:|:---:|
 | R02 | 13.269 | < 5 | 2.65× over target |
 | R05 | 6.355 | < 5 | 1.27× over target |
-| R06 | 47.210 | < 5 | 9.44× over target |
 
-R02 and R06 require materialized pre-aggregation to meet real-time targets at this scale. R05 requires a `VACUUM FREEZE` on `user_teams` to eliminate heap fetches in the covering index.
+R02 requires materialized pre-aggregation of player-pick percentages to meet the real-time target at this scale. R05 requires a `VACUUM FREEZE` on `user_teams` to eliminate heap fetches in the covering index and reduce the first-run time below 5 ms. R06 (47.2 ms) passes its Interactive (< 250 ms) target but carries a high growth ratio (9.16×) and is a candidate for pre-computation at further scale.
 
 ### Storage Observations
 
@@ -448,7 +460,7 @@ For 100× growth (100M users, 157M transactions), the following are required bey
 2. **Read replicas** to separate analytics from OLTP workloads.
 3. **Redis caching** for leaderboards (R05), lobby data (R01), and player pools (R02).
 4. **PgBouncer** connection pooling to handle concurrent connection volume.
-5. **Materialized views** for R02 (player selection %) and R06 (rule violations).
+5. **Materialized views** for R02 (player selection %) and R06 (rule-violation pre-computation to manage 9.16× growth ratio).
 6. **Extend partitioning** to `user_teams` and `contest_entries`.
 7. **Autovacuum tuning** for all high-churn tables.
 8. **`VACUUM FREEZE`** on `user_teams` to resolve R05 heap fetch overhead.
