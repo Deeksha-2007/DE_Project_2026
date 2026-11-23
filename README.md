@@ -352,6 +352,37 @@ If a query misses its target, **find out why from the plan and fix it.** A query
 
 ## Repository structure (submit exactly this)
 
+
+---
+
+## Phase 5: Scalability Results
+
+The database was evaluated using a large dataset to analyze query performance, storage growth, and scalability.
+
+### Key Deliverables
+
+| File | Description |
+|---|---|
+| [Scalability Report](docs/05_scalability_report.md) | Detailed scalability analysis and future 100× architecture |
+| [Partitioning SQL](sql/08_partitioning.sql) | PostgreSQL monthly RANGE partitioning implementation |
+| [Large Benchmark Results](benchmarks/results/large/summary.csv) | Benchmark results for R01–R25 and W01–W05 |
+| [Partition Pruning Results](benchmarks/results/large/partition_pruning.txt) | Partition pruning execution-plan results |
+
+### Key Findings
+
+- Evaluated all 30 workload queries on the large dataset.
+- Compared optimized seed and large dataset execution times.
+- Analyzed query performance growth and indexing overhead.
+- Identified queries that require further optimization.
+- Implemented monthly RANGE partitioning for wallet transactions.
+- Evaluated partition pruning using PostgreSQL EXPLAIN.
+- Proposed a future architecture supporting 100× data growth.
+
+For detailed measurements, performance analysis, storage comparisons, and future scalability recommendations, refer to [05_scalability_report.md](docs/05_scalability_report.md).
+
+---
+
+
 ```
 dream11-dbms-<team-no>/
 ├── README.md                          # team table, how to run, headline numbers
